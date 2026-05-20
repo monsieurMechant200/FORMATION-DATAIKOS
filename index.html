@@ -1379,7 +1379,7 @@ async function trackScore(quizId, quizTitre, score, total, pct) {
       quizId, quizTitre, score, total, pct,
       timestamp: new Date().toISOString()
     };
-    const res = await fetch('/api/track', {
+    const res = await fetch('/API/track', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
@@ -1387,9 +1387,9 @@ async function trackScore(quizId, quizTitre, score, total, pct) {
     const data = await res.json();
     if (data.success) {
       const msg = data.tentativeNum === 1
-        ? '✓ 1ère tentative enregistrée — ' + pct + '%'
+        ? '✓ 1ère tentative enregistrée - ' + pct + '%'
         : data.tentativeNum === 2
-          ? '✓ 2ème tentative enregistrée — ' + pct + '%'
+          ? '✓ 2ème tentative enregistrée - ' + pct + '%'
           : 'Score non enregistré (2 tentatives max atteintes)';
       showToast(msg, data.tentativeNum <= 2 ? 'success' : 'info');
     }
