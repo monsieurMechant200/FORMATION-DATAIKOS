@@ -676,6 +676,89 @@ footer {
   .nav-links.open { display: flex; }
   .nav-links a { width: 100%; text-align: center; }
 }
+
+/* ===== IDENTITY MODAL ===== */
+.id-modal-overlay {
+  position: fixed; inset: 0; z-index: 300;
+  background: rgba(0,0,0,0.6); backdrop-filter: blur(6px);
+  display: flex; align-items: center; justify-content: center; padding: 1rem;
+}
+.id-modal-overlay.hidden { display: none; }
+.id-modal {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 16px; padding: 2.5rem;
+  max-width: 440px; width: 100%;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  animation: fadeUp 0.3s ease;
+}
+.id-modal-hex {
+  width: 56px; height: 56px;
+  background: var(--accent);
+  clip-path: polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 1.4rem; margin: 0 auto 1.5rem;
+}
+.id-modal h3 {
+  font-size: 1.3rem; font-weight: 800; text-align: center; margin-bottom: 0.5rem;
+}
+.id-modal-sub {
+  font-size: 14px; color: var(--text-muted); text-align: center; margin-bottom: 2rem;
+}
+.id-field { margin-bottom: 1.25rem; }
+.id-field label {
+  display: block; font-size: 13px; font-weight: 600;
+  color: var(--text-muted); margin-bottom: 6px;
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+.id-field input {
+  width: 100%; padding: 12px 14px; border-radius: 8px;
+  border: 1.5px solid var(--border); background: var(--bg-surface);
+  color: var(--text); font-size: 15px; font-family: 'Inter', sans-serif;
+  transition: border-color 0.2s;
+  outline: none;
+}
+.id-field input:focus { border-color: var(--accent); }
+.id-error {
+  font-size: 13px; color: #dc2626; margin-top: 4px; display: none;
+}
+.id-error.show { display: block; }
+.id-modal-btn {
+  width: 100%; padding: 14px; border-radius: 8px;
+  background: var(--accent); color: white; border: none;
+  font-size: 15px; font-weight: 700; cursor: pointer;
+  font-family: 'Inter', sans-serif; margin-top: 0.5rem;
+  transition: all 0.2s;
+}
+.id-modal-btn:hover { background: var(--accent-dark); transform: translateY(-1px); }
+
+/* Tracking indicator */
+.track-indicator {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 12px; border-radius: 100px;
+  font-size: 12px; font-weight: 600;
+  background: var(--accent-pale); color: var(--accent);
+  margin-bottom: 1rem;
+}
+.track-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+  animation: pulse 1.5s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+/* Toast notification */
+.toast {
+  position: fixed; bottom: 2rem; right: 2rem; z-index: 400;
+  padding: 12px 20px; border-radius: 10px;
+  font-size: 14px; font-weight: 600;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  transform: translateY(100px); opacity: 0;
+  transition: all 0.3s ease;
+  max-width: 320px;
+}
+.toast.show { transform: translateY(0); opacity: 1; }
+.toast.success { background: #1a7a4a; color: white; }
+.toast.error { background: #dc2626; color: white; }
+.toast.info { background: var(--accent); color: white; }
 </style>
 </head>
 <body data-theme="green">
@@ -923,6 +1006,28 @@ footer {
     <div class="people-grid" id="formateurs-grid"></div>
   </div>
 </div>
+
+<!-- IDENTITY MODAL -->
+<div class="id-modal-overlay hidden" id="identityModal">
+  <div class="id-modal">
+    <div class="id-modal-hex">🎯</div>
+    <h3>Qui êtes-vous ?</h3>
+    <p class="id-modal-sub">Entrez votre nom pour que vos scores soient enregistrés et suivis par DATAIKOS.</p>
+    <div class="id-field">
+      <label>Prénom</label>
+      <input type="text" id="inputPrenom" placeholder="Ex: David" autocomplete="given-name">
+    </div>
+    <div class="id-field">
+      <label>Nom</label>
+      <input type="text" id="inputNom" placeholder="Ex: Meilleur" autocomplete="family-name">
+      <div class="id-error" id="idError">Veuillez renseigner votre prénom et nom.</div>
+    </div>
+    <button class="id-modal-btn" onclick="confirmIdentity()">Commencer le quizz →</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
 
 <!-- QUIZ OVERLAY -->
 <div class="quiz-overlay" id="quizOverlay">
@@ -1211,6 +1316,88 @@ let answers = [];
 let score = 0;
 let answered = false;
 
+// Identité du participant
+let participantPrenom = '';
+let participantNom = '';
+let pendingQuizId = null;
+
+// ============================================================
+// TOAST
+// ============================================================
+function showToast(msg, type, duration) {
+  duration = duration || 3500;
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast ' + type + ' show';
+  setTimeout(function() { t.className = 'toast'; }, duration);
+}
+
+// ============================================================
+// IDENTITY
+// ============================================================
+function requestIdentityThenQuiz(quizId) {
+  pendingQuizId = quizId;
+  if (participantPrenom && participantNom) {
+    startQuiz(quizId);
+    return;
+  }
+  document.getElementById('identityModal').classList.remove('hidden');
+  document.getElementById('inputPrenom').value = '';
+  document.getElementById('inputNom').value = '';
+  document.getElementById('idError').classList.remove('show');
+  setTimeout(function() { document.getElementById('inputPrenom').focus(); }, 100);
+}
+
+function confirmIdentity() {
+  const prenom = document.getElementById('inputPrenom').value.trim();
+  const nom    = document.getElementById('inputNom').value.trim();
+  if (!prenom || !nom) {
+    document.getElementById('idError').classList.add('show');
+    return;
+  }
+  participantPrenom = prenom;
+  participantNom    = nom;
+  document.getElementById('identityModal').classList.add('hidden');
+  if (pendingQuizId) startQuiz(pendingQuizId);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  ['inputPrenom','inputNom'].forEach(function(id) {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('keydown', function(e) { if (e.key === 'Enter') confirmIdentity(); });
+  });
+});
+
+// ============================================================
+// TRACKING
+// ============================================================
+async function trackScore(quizId, quizTitre, score, total, pct) {
+  try {
+    const payload = {
+      prenom: participantPrenom,
+      nom:    participantNom,
+      quizId, quizTitre, score, total, pct,
+      timestamp: new Date().toISOString()
+    };
+    const res = await fetch('/api/track', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const data = await res.json();
+    if (data.success) {
+      const msg = data.tentativeNum === 1
+        ? '✓ 1ère tentative enregistrée — ' + pct + '%'
+        : data.tentativeNum === 2
+          ? '✓ 2ème tentative enregistrée — ' + pct + '%'
+          : 'Score non enregistré (2 tentatives max atteintes)';
+      showToast(msg, data.tentativeNum <= 2 ? 'success' : 'info');
+    }
+  } catch(err) {
+    console.warn('Tracking indisponible:', err.message);
+  }
+}
+
 // ============================================================
 // NAVIGATION
 // ============================================================
@@ -1242,7 +1429,7 @@ function setTheme(theme, btn) {
 // ============================================================
 function showFormationList() {
   document.getElementById('formations-list').style.display = 'block';
-  document.getElementById('formation-good-deal').classList.remove('visible');
+  document.querySelectorAll('.formation-detail').forEach(d => d.classList.remove('visible'));
 }
 
 function showFormation(id) {
@@ -1253,16 +1440,11 @@ function showFormation(id) {
   window.scrollTo(0, 0);
 }
 
-function showFormationList() {
-  document.getElementById('formations-list').style.display = 'block';
-  document.querySelectorAll('.formation-detail').forEach(d => d.classList.remove('visible'));
-}
-
 function renderFormationQuizz() {
   const container = document.getElementById('formation-quizz-list');
   if (!container) return;
   const html = QUIZZ_DATA.map(q => `
-    <div class="quizz-mini-card" onclick="openQuiz('${q.id}')">
+    <div class="quizz-mini-card" onclick="requestIdentityThenQuiz('${q.id}')">
       <div class="quizz-mini-left">
         <h5>Quizz ${q.num} - ${q.titre}</h5>
         <span>${q.questions.length} questions</span>
@@ -1280,7 +1462,7 @@ function renderQuizzGrid() {
   const container = document.getElementById('quizz-grid');
   if (!container) return;
   container.innerHTML = QUIZZ_DATA.map(q => `
-    <div class="quizz-card" onclick="openQuiz('${q.id}')">
+    <div class="quizz-card" onclick="requestIdentityThenQuiz('${q.id}')">
       <div class="quizz-card-header">
         <div class="quizz-num">GOOD DEAL - Q${q.num}/7</div>
         <span class="level-badge ${q.niveauClass}">${q.niveau}</span>
@@ -1299,6 +1481,10 @@ function renderQuizzGrid() {
 // QUIZ ENGINE
 // ============================================================
 function openQuiz(quizId) {
+  requestIdentityThenQuiz(quizId);
+}
+
+function startQuiz(quizId) {
   currentQuiz = QUIZZ_DATA.find(q => q.id === quizId);
   currentQuestion = 0;
   answers = [];
@@ -1327,6 +1513,7 @@ function renderQuestion() {
 
   const optLabels = ['A', 'B', 'C', 'D'];
   const html = `
+    <div class="track-indicator"><div class="track-dot"></div>${participantPrenom} ${participantNom}</div>
     <div class="question-num">Question ${currentQuestion + 1} sur ${total}</div>
     <div class="question-text">${q.q}</div>
     <div class="options-grid">
@@ -1383,8 +1570,11 @@ function showResults() {
   const pct = Math.round((score / total) * 100);
   document.getElementById('progressFill').style.width = '100%';
 
+  // Envoyer le score au serveur Vercel KV
+  trackScore(currentQuiz.id, currentQuiz.titre, score, total, pct);
+
   let mention = '';
-  if (pct >= 90) mention = '🏆 Excellent ! Niveau validé.';
+  if (pct >= 90) mention = 'Excellent ! Niveau validé.';
   else if (pct >= 70) mention = 'Bien joué ! Encore un effort.';
   else if (pct >= 50) mention = 'En progrès - relisez le cours !';
   else mention = 'Continuez à vous former !';
@@ -1406,6 +1596,9 @@ function showResults() {
 
   document.getElementById('quizContent').innerHTML = `
     <div class="results-screen">
+      <div style="font-size:14px;color:var(--text-muted);margin-bottom:1.5rem;font-weight:600;">
+        Résultats de <span style="color:var(--accent);">${participantPrenom} ${participantNom}</span>
+      </div>
       <div class="score-circle">
         <svg viewBox="0 0 120 120">
           <circle cx="60" cy="60" r="54" fill="none" stroke="var(--border)" stroke-width="8"/>
@@ -1419,8 +1612,11 @@ function showResults() {
       </div>
       <div class="results-title">${mention}</div>
       <div class="results-sub">Vous avez répondu correctement à ${score} question(s) sur ${total}.</div>
+      <div style="font-size:12px;color:var(--text-faint);margin-bottom:1.5rem;">
+        Score enregistré pour le suivi DATAIKOS ✓
+      </div>
       <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem;">
-        <button class="btn btn-primary" onclick="openQuiz('${currentQuiz.id}')">Recommencer →</button>
+        <button class="btn btn-primary" onclick="startQuiz('${currentQuiz.id}')">Recommencer →</button>
         <button class="btn btn-outline" onclick="closeQuiz()">Fermer</button>
       </div>
       <div class="answers-review">
@@ -1482,6 +1678,7 @@ function renderFormateurs() {
     </div>
   `).join('');
 }
+
 function switchLaureatTab(tab) {
   document.querySelectorAll('.laureat-tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.laureat-section').forEach(s => s.classList.remove('active'));
@@ -1495,6 +1692,7 @@ function switchLaureatTab(tab) {
 renderQuizzGrid();
 renderFormationQuizz();
 renderLaureats();
+
 </script>
 </body>
 </html>
