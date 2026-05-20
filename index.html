@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DATAIKOS · Espace Formation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green: #1a7a4a;
+  --green-light: #2ecc77;
+  --green-dark: #0d4f2e;
+  --green-pale: #e8f8f0;
+  --pink: #d63b7f;
+  --pink-light: #f472b6;
+  --pink-dark: #9b1e56;
+  --pink-pale: #fdf2f8;
+  --blue: #1a5fbf;
+  --blue-light: #60a5fa;
+  --blue-dark: #0f3d82;
+  --blue-pale: #eff6ff;
+  --black: #0a0a0a;
+  --black-surface: #141414;
+  --black-card: #1e1e1e;
+  --black-border: #2e2e2e;
+  --white: #ffffff;
+  --white-surface: #f8f8f8;
+  --white-card: #ffffff;
+  --white-border: #e5e5e5;
+
+  --accent: var(--green);
+  --accent-light: var(--green-light);
+  --accent-dark: var(--green-dark);
+  --accent-pale: var(--green-pale);
+  --bg: var(--white);
+  --bg-surface: var(--white-surface);
+  --bg-card: var(--white-card);
+  --border: var(--white-border);
+  --text: #111111;
+  --text-muted: #555555;
+  --text-faint: #999999;
+  --nav-bg: rgba(255,255,255,0.92);
+  --shadow: 0 2px 20px rgba(0,0,0,0.08);
+  --shadow-card: 0 4px 32px rgba(0,0,0,0.1);
+}
+
+[data-theme="green"] {
+  --accent: #1a7a4a; --accent-light: #2ecc77; --accent-dark: #0d4f2e; --accent-pale: #e8f8f0;
+  --bg: #ffffff; --bg-surface: #f4faf7; --bg-card: #ffffff; --border: #d4eedd;
+  --text: #0d1f16; --text-muted: #3a6b4f; --text-faint: #7fb894;
+  --nav-bg: rgba(255,255,255,0.95);
+  --shadow: 0 2px 20px rgba(26,122,74,0.1); --shadow-card: 0 4px 32px rgba(26,122,74,0.14);
+}
+[data-theme="pink"] {
+  --accent: #d63b7f; --accent-light: #f472b6; --accent-dark: #9b1e56; --accent-pale: #fdf2f8;
+  --bg: #fffafd; --bg-surface: #fdf0f8; --bg-card: #ffffff; --border: #f9c3e2;
+  --text: #2a0f1e; --text-muted: #7a2c56; --text-faint: #c87fa8;
+  --nav-bg: rgba(255,250,253,0.95);
+  --shadow: 0 2px 20px rgba(214,59,127,0.1); --shadow-card: 0 4px 32px rgba(214,59,127,0.14);
+}
+[data-theme="blue"] {
+  --accent: #1a5fbf; --accent-light: #60a5fa; --accent-dark: #0f3d82; --accent-pale: #eff6ff;
+  --bg: #f7faff; --bg-surface: #eef4ff; --bg-card: #ffffff; --border: #bfd3f7;
+  --text: #0a1832; --text-muted: #2c4f8c; --text-faint: #7ba3d4;
+  --nav-bg: rgba(247,250,255,0.95);
+  --shadow: 0 2px 20px rgba(26,95,191,0.1); --shadow-card: 0 4px 32px rgba(26,95,191,0.14);
+}
+[data-theme="dark"] {
+  --accent: #2ecc77; --accent-light: #52e898; --accent-dark: #1a7a4a; --accent-pale: #0d2b1a;
+  --bg: #0a0a0a; --bg-surface: #141414; --bg-card: #1e1e1e; --border: #2e2e2e;
+  --text: #f0f0f0; --text-muted: #aaaaaa; --text-faint: #555555;
+  --nav-bg: rgba(10,10,10,0.95);
+  --shadow: 0 2px 20px rgba(0,0,0,0.4); --shadow-card: 0 4px 32px rgba(0,0,0,0.5);
+}
+[data-theme="light"] {
+  --accent: #333333; --accent-light: #666666; --accent-dark: #111111; --accent-pale: #f0f0f0;
+  --bg: #fafafa; --bg-surface: #f0f0f0; --bg-card: #ffffff; --border: #e0e0e0;
+  --text: #111111; --text-muted: #444444; --text-faint: #999999;
+  --nav-bg: rgba(250,250,250,0.95);
+  --shadow: 0 2px 20px rgba(0,0,0,0.06); --shadow-card: 0 4px 32px rgba(0,0,0,0.08);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  transition: background 0.3s, color 0.3s;
+  overflow-x: hidden;
+}
+h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
+code, .mono { font-family: 'Space Mono', monospace; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: var(--nav-bg);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 64px;
+  transition: all 0.3s;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none; color: var(--text);
+}
+.logo-hex {
+  width: 36px; height: 36px;
+  background: var(--accent);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-family: 'Space Mono', monospace; font-size: 11px; font-weight: 700;
+}
+.logo-fallback {
+  width: 44px; height: 44px; border-radius: 10px;
+  background: linear-gradient(135deg, var(--green), var(--green-mid));
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+.nav-brand { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; letter-spacing: 0.05em; }
+.nav-links { display: flex; gap: 0.25rem; align-items: center; }
+.nav-links a {
+  padding: 6px 14px; border-radius: 6px;
+  text-decoration: none; color: var(--text-muted);
+  font-size: 14px; font-weight: 500;
+  transition: all 0.2s; cursor: pointer;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--accent); background: var(--accent-pale); }
+.nav-right { display: flex; gap: 8px; align-items: center; }
+.theme-picker { display: flex; gap: 4px; }
+.theme-btn {
+  width: 22px; height: 22px; border-radius: 50%; border: 2px solid transparent;
+  cursor: pointer; transition: transform 0.2s, border-color 0.2s;
+}
+.theme-btn:hover { transform: scale(1.2); }
+.theme-btn.active { border-color: var(--text); }
+.tb-green { background: #1a7a4a; }
+.tb-pink { background: #d63b7f; }
+.tb-blue { background: #1a5fbf; }
+.tb-dark { background: #0a0a0a; border: 1px solid #444; }
+.tb-light { background: #e5e5e5; }
+
+/* SECTIONS */
+.page { display: none; padding-top: 64px; min-height: 100vh; }
+.page.active { display: block; }
+
+/* ===== ACCUEIL ===== */
+.hero {
+  padding: 6rem 2rem 4rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(160deg, var(--bg) 60%, var(--accent-pale));
+}
+.hero::before {
+  content: '';
+  position: absolute; top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: radial-gradient(circle at 60% 40%, var(--accent-pale) 0%, transparent 50%);
+  pointer-events: none;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 16px; border-radius: 100px;
+  background: var(--accent-pale); color: var(--accent);
+  font-size: 13px; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; margin-bottom: 2rem;
+  border: 1px solid var(--accent);
+}
+.hero-badge::before { content: '⬡'; }
+.hero h1 {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 800; line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+.hero h1 span { color: var(--accent); }
+.hero-sub {
+  font-size: 1.2rem; color: var(--text-muted);
+  max-width: 600px; margin: 0 auto 3rem;
+  font-weight: 300;
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 28px; border-radius: 8px;
+  font-weight: 600; font-size: 15px;
+  cursor: pointer; transition: all 0.2s;
+  text-decoration: none; border: none; font-family: 'Inter', sans-serif;
+}
+.btn-primary {
+  background: var(--accent); color: white;
+}
+.btn-primary:hover { background: var(--accent-dark); transform: translateY(-1px); box-shadow: 0 8px 24px color-mix(in srgb, var(--accent) 30%, transparent); }
+.btn-outline {
+  background: transparent; color: var(--accent);
+  border: 1.5px solid var(--accent);
+}
+.btn-outline:hover { background: var(--accent-pale); }
+.hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+.group-photo {
+  margin: 4rem auto;
+  max-width: 800px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  background: var(--bg-surface);
+  height: 320px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--border);
+}
+.group-photo-placeholder {
+  text-align: center;
+  color: var(--text-faint);
+}
+.group-photo-placeholder .hex-grid {
+  display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
+  max-width: 300px; margin: 0 auto 1rem;
+}
+.mini-hex {
+  width: 40px; height: 40px;
+  background: var(--accent-pale);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  border: none;
+}
+.mini-hex.filled { background: var(--accent); opacity: 0.6; }
+
+.stats-row {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem; max-width: 1000px; margin: 0 auto 4rem; padding: 0 2rem;
+}
+.stat-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 12px; padding: 1.5rem;
+  text-align: center; box-shadow: var(--shadow);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.stat-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-card); }
+.stat-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 2.5rem; font-weight: 700; color: var(--accent);
+  line-height: 1;
+}
+.stat-label { font-size: 13px; color: var(--text-muted); margin-top: 6px; text-transform: uppercase; letter-spacing: 0.06em; }
+
+.about-section {
+  padding: 4rem 2rem;
+  max-width: 1100px; margin: 0 auto;
+}
+.section-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px; font-weight: 700; color: var(--accent);
+  text-transform: uppercase; letter-spacing: 0.15em;
+  margin-bottom: 0.75rem;
+}
+.section-title {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 800; line-height: 1.2;
+  margin-bottom: 1rem;
+}
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 3rem; margin-top: 3rem;
+}
+@media(max-width:768px){.about-grid{grid-template-columns:1fr;}}
+.about-text p { color: var(--text-muted); margin-bottom: 1rem; line-height: 1.8; }
+.values-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+}
+.value-card {
+  background: var(--accent-pale); border-radius: 10px; padding: 1.25rem;
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+}
+.value-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+.value-title { font-weight: 700; font-size: 14px; margin-bottom: 4px; color: var(--accent-dark); }
+.value-desc { font-size: 13px; color: var(--text-muted); }
+
+.site-intro {
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 4rem 2rem;
+}
+.site-intro-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; align-items: center;
+}
+@media(max-width:768px){.site-intro-inner{grid-template-columns:1fr;}}
+.site-intro-badge {
+  width: 120px; height: 120px;
+  background: var(--accent);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Space Mono', monospace; font-size: 10px; font-weight: 700;
+  color: white; text-align: center; line-height: 1.4;
+}
+.features-mini {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem;
+}
+.feature-mini {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 14px; border-radius: 8px;
+  background: var(--bg-card); border: 1px solid var(--border);
+  font-size: 14px; color: var(--text-muted);
+}
+.feature-mini-dot {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex-shrink: 0;
+}
+
+/* ===== FORMATION ===== */
+.page-header {
+  padding: 4rem 2rem 2rem;
+  text-align: center;
+  background: linear-gradient(160deg, var(--bg) 60%, var(--accent-pale));
+}
+.formations-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem; padding: 2rem;
+  max-width: 1200px; margin: 0 auto;
+}
+.formation-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 14px; overflow: hidden;
+  box-shadow: var(--shadow); cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.formation-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); }
+.formation-banner {
+  height: 160px;
+  background: linear-gradient(135deg, var(--accent-dark), var(--accent));
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.formation-banner::before {
+  content: '';
+  position: absolute; top: -30%; right: -20%;
+  width: 200px; height: 200px;
+  background: rgba(255,255,255,0.08);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+.formation-banner-title {
+  font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800;
+  color: white; letter-spacing: 0.05em; position: relative; z-index: 1;
+}
+.formation-body { padding: 1.5rem; }
+.status-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 12px; border-radius: 100px;
+  font-size: 12px; font-weight: 600; margin-bottom: 1rem;
+}
+.status-en-cours { background: #e8f8f0; color: #1a7a4a; }
+.status-prevu { background: #eff6ff; color: #1a5fbf; }
+.status-termine { background: #f0f0f0; color: #555; }
+.status-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.formation-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; }
+.formation-card p { font-size: 14px; color: var(--text-muted); margin-bottom: 1.5rem; }
+.formation-meta {
+  display: flex; gap: 1rem; flex-wrap: wrap;
+  font-size: 13px; color: var(--text-faint);
+  margin-bottom: 1rem;
+}
+.formation-meta span { display: flex; align-items: center; gap: 4px; }
+
+/* FORMATION DETAIL */
+.formation-detail { display: none; padding: 0 2rem 4rem; max-width: 1000px; margin: 0 auto; }
+.formation-detail.visible { display: block; }
+.back-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 16px; border-radius: 8px; cursor: pointer;
+  background: var(--bg-surface); border: 1px solid var(--border);
+  font-size: 14px; font-weight: 500; color: var(--text-muted);
+  transition: all 0.2s; margin: 2rem 0 1.5rem;
+}
+.back-btn:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-pale); }
+.detail-hero {
+  height: 280px;
+  background: linear-gradient(135deg, var(--accent-dark), var(--accent));
+  border-radius: 16px;
+  display: flex; align-items: center; padding: 3rem;
+  margin-bottom: 2rem; position: relative; overflow: hidden;
+}
+.detail-hero::before {
+  content: '⬡ ⬡ ⬡';
+  position: absolute; right: 2rem; top: 50%; transform: translateY(-50%);
+  font-size: 6rem; color: rgba(255,255,255,0.1); letter-spacing: 1rem;
+}
+.detail-hero-content { color: white; }
+.detail-hero-content h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+.detail-hero-content p { opacity: 0.8; font-size: 1rem; }
+.detail-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; }
+@media(max-width:768px){.detail-grid{grid-template-columns:1fr;}}
+.detail-main {}
+.detail-sidebar {}
+.info-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem;
+  box-shadow: var(--shadow);
+}
+.info-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; color: var(--accent); }
+.info-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 0; border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+.info-row:last-child { border-bottom: none; }
+.info-row .label { color: var(--text-muted); }
+.info-row .val { font-weight: 600; }
+.quizz-list-section h4 {
+  font-size: 1rem; font-weight: 700; margin-bottom: 1rem; color: var(--accent);
+}
+.quizz-mini-card {
+  background: var(--bg-surface); border: 1px solid var(--border);
+  border-radius: 10px; padding: 1rem 1.25rem;
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 0.75rem; cursor: pointer;
+  transition: all 0.2s;
+}
+.quizz-mini-card:hover { border-color: var(--accent); background: var(--accent-pale); }
+.quizz-mini-left h5 { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+.quizz-mini-left span { font-size: 12px; color: var(--text-faint); }
+.level-badge {
+  font-size: 11px; font-weight: 700; padding: 3px 10px;
+  border-radius: 100px; white-space: nowrap;
+}
+.lvl-0 { background: #e8f8f0; color: #1a7a4a; }
+.lvl-1 { background: #eff6ff; color: #1a5fbf; }
+.lvl-2 { background: #fef3c7; color: #d97706; }
+.lvl-3 { background: #ffe4e6; color: #e11d48; }
+.lvl-4 { background: #f3e8ff; color: #7c3aed; }
+.lvl-5 { background: #fdf2f8; color: #d63b7f; }
+.lvl-6 { background: #0a0a0a; color: #2ecc77; }
+
+/* ===== QUIZZ ===== */
+.quizz-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem; padding: 2rem; max-width: 1200px; margin: 0 auto;
+}
+.quizz-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 12px; padding: 1.5rem;
+  box-shadow: var(--shadow); cursor: pointer;
+  transition: all 0.2s;
+}
+.quizz-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-card); border-color: var(--accent); }
+.quizz-card-header { display: flex; justify-content: space-between; margin-bottom: 1rem; }
+.quizz-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px; color: var(--text-faint);
+}
+.quizz-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+.quizz-card p { font-size: 13px; color: var(--text-muted); margin-bottom: 1rem; }
+.quizz-card-footer {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 13px; color: var(--text-faint);
+}
+.start-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 14px; border-radius: 6px;
+  background: var(--accent); color: white;
+  font-size: 13px; font-weight: 600; cursor: pointer;
+  border: none; font-family: 'Inter', sans-serif;
+  transition: all 0.2s;
+}
+.start-btn:hover { background: var(--accent-dark); }
+
+/* QUIZ ENGINE */
+.quiz-overlay {
+  display: none; position: fixed; inset: 0; z-index: 200;
+  background: var(--bg); overflow-y: auto; padding-top: 64px;
+}
+.quiz-overlay.open { display: block; }
+.quiz-container {
+  max-width: 700px; margin: 0 auto; padding: 2rem;
+}
+.quiz-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 2rem;
+}
+.quiz-close {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--bg-surface); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 18px; color: var(--text-muted);
+  transition: all 0.2s;
+}
+.quiz-close:hover { color: var(--accent); border-color: var(--accent); }
+.quiz-progress-bar {
+  height: 4px; background: var(--border); border-radius: 100px;
+  margin-bottom: 2rem; overflow: hidden;
+}
+.quiz-progress-fill {
+  height: 100%; background: var(--accent); border-radius: 100px;
+  transition: width 0.4s ease;
+}
+.quiz-meta {
+  font-family: 'Space Mono', monospace;
+  font-size: 12px; color: var(--text-faint);
+}
+.question-num {
+  font-size: 12px; color: var(--text-muted); margin-bottom: 0.5rem;
+  text-transform: uppercase; letter-spacing: 0.1em;
+}
+.question-text {
+  font-size: 1.3rem; font-weight: 700; line-height: 1.4;
+  margin-bottom: 2rem; color: var(--text);
+}
+.options-grid { display: grid; gap: 0.75rem; margin-bottom: 2rem; }
+.option-btn {
+  padding: 1rem 1.25rem; border-radius: 10px;
+  border: 1.5px solid var(--border);
+  background: var(--bg-card); color: var(--text);
+  text-align: left; cursor: pointer; font-size: 15px;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.2s; display: flex; align-items: center; gap: 12px;
+}
+.option-btn:hover:not(.selected):not(.correct):not(.wrong) {
+  border-color: var(--accent); background: var(--accent-pale);
+}
+.option-label {
+  width: 28px; height: 28px; border-radius: 6px;
+  background: var(--bg-surface); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 13px; flex-shrink: 0; color: var(--text-muted);
+}
+.option-btn.correct { border-color: #1a7a4a; background: #e8f8f0; color: #0d4f2e; }
+.option-btn.correct .option-label { background: #1a7a4a; color: white; border-color: #1a7a4a; }
+.option-btn.wrong { border-color: #dc2626; background: #fef2f2; color: #7f1d1d; }
+.option-btn.wrong .option-label { background: #dc2626; color: white; border-color: #dc2626; }
+.option-btn.selected:not(.correct):not(.wrong) { border-color: var(--accent); background: var(--accent-pale); }
+.quiz-nav {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 1rem;
+}
+.quiz-feedback {
+  padding: 1rem 1.25rem; border-radius: 10px;
+  font-size: 14px; line-height: 1.6; margin-bottom: 1rem;
+  display: none;
+}
+.quiz-feedback.show { display: block; }
+.quiz-feedback.correct-fb { background: #e8f8f0; border: 1px solid #1a7a4a; color: #0d4f2e; }
+.quiz-feedback.wrong-fb { background: #fef2f2; border: 1px solid #dc2626; color: #7f1d1d; }
+
+/* RESULTS */
+.results-screen { text-align: center; padding: 2rem 0; }
+.score-circle {
+  width: 160px; height: 160px; border-radius: 50%;
+  border: 6px solid var(--border); margin: 0 auto 2rem;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.score-circle svg {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+}
+.score-circle-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 2rem; font-weight: 700; color: var(--accent); position: relative; z-index: 1;
+}
+.score-circle-label { font-size: 12px; color: var(--text-muted); position: relative; z-index: 1; }
+.results-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+.results-sub { color: var(--text-muted); margin-bottom: 2rem; }
+.answers-review { text-align: left; margin-top: 2rem; }
+.review-item {
+  padding: 1rem; border-radius: 10px; margin-bottom: 0.75rem;
+  border: 1px solid var(--border); background: var(--bg-card);
+}
+.review-item.correct-r { border-color: #1a7a4a; }
+.review-item.wrong-r { border-color: #dc2626; }
+.review-q { font-size: 14px; font-weight: 600; margin-bottom: 0.5rem; }
+.review-a { font-size: 13px; color: var(--text-muted); }
+.review-a .your { font-weight: 600; }
+.review-a .correct-ans { color: #1a7a4a; font-weight: 600; }
+
+/* ===== LAUREATS ===== */
+.laureats-tabs {
+  display: flex; gap: 0; padding: 2rem 2rem 0;
+  max-width: 1200px; margin: 0 auto;
+  border-bottom: 1px solid var(--border);
+}
+.laureat-tab {
+  padding: 10px 24px; cursor: pointer;
+  font-weight: 600; font-size: 15px;
+  color: var(--text-muted);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px; transition: all 0.2s;
+}
+.laureat-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+.laureat-section { display: none; padding: 2rem; max-width: 1200px; margin: 0 auto; }
+.laureat-section.active { display: block; }
+.people-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.person-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 14px; overflow: hidden; text-align: center;
+  box-shadow: var(--shadow); transition: all 0.2s;
+}
+.person-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-card); }
+.person-avatar {
+  width: 100%; height: 160px;
+  background: linear-gradient(135deg, var(--accent-dark), var(--accent));
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.person-avatar img {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;
+}
+.person-initials {
+  font-family: 'Syne', sans-serif; font-size: 2.5rem; font-weight: 800;
+  color: rgba(255,255,255,0.9);
+  z-index: 1;
+}
+.person-body { padding: 1.25rem; }
+.person-name { font-weight: 700; font-size: 1rem; margin-bottom: 4px; }
+.person-role { font-size: 12px; color: var(--text-faint); margin-bottom: 0.75rem; }
+.person-badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 3px 10px; border-radius: 100px;
+  font-size: 11px; font-weight: 600; margin-bottom: 0.75rem;
+}
+.badge-member { background: var(--accent-pale); color: var(--accent); }
+.badge-partner { background: #eff6ff; color: #1a5fbf; }
+.person-formations { font-size: 12px; color: var(--text-muted); }
+.person-formations .f-tag {
+  display: inline-block; padding: 2px 8px; border-radius: 4px;
+  background: var(--bg-surface); border: 1px solid var(--border);
+  margin: 2px; font-size: 11px;
+}
+
+/* FOOTER */
+footer {
+  background: var(--bg-surface); border-top: 1px solid var(--border);
+  padding: 3rem 2rem; text-align: center; margin-top: 4rem;
+}
+.footer-logo {
+  font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.5rem;
+  color: var(--accent); margin-bottom: 0.5rem;
+}
+.footer-tagline { font-size: 13px; color: var(--text-faint); font-style: italic; }
+.footer-links { display: flex; gap: 1.5rem; justify-content: center; margin: 1.5rem 0; flex-wrap: wrap; }
+.footer-links a { font-size: 14px; color: var(--text-muted); text-decoration: none; cursor: pointer; }
+.footer-links a:hover { color: var(--accent); }
+.footer-copy { font-size: 12px; color: var(--text-faint); }
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp 0.5s ease forwards; }
+.page.active > * { animation: fadeUp 0.4s ease forwards; }
+
+/* Mobile nav */
+.mobile-nav-toggle {
+  display: none; background: none; border: none;
+  font-size: 1.5rem; cursor: pointer; color: var(--text);
+}
+@media(max-width: 768px) {
+  .mobile-nav-toggle { display: block; }
+  .nav-links { 
+    display: none; position: fixed; top: 64px; left: 0; right: 0;
+    background: var(--nav-bg); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    flex-direction: column; padding: 1rem;
+    gap: 0.25rem;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a { width: 100%; text-align: center; }
+}
+</style>
+</head>
+<body data-theme="green">
+
+<!-- NAVIGATION -->
+<nav>
+  <a class="logo" onclick="showPage('accueil')">
+    <div class="logo-fallback"><img src="images/10.png" alt="test"></div>
+    <span class="nav-brand">DATAIKOS</span>
+  </a>
+  <div class="nav-links" id="navLinks">
+    <a onclick="showPage('accueil')" class="active" data-page="accueil">Accueil</a>
+    <a onclick="showPage('formation')" data-page="formation">Formation</a>
+    <a onclick="showPage('quizz')" data-page="quizz">Quizz</a>
+    <a onclick="showPage('laureats')" data-page="laureats">Lauréats</a>
+  </div>
+  <div class="nav-right">
+    <div class="theme-picker">
+      <div class="theme-btn tb-green active" title="Vert DATAIKOS" onclick="setTheme('green',this)"></div>
+      <div class="theme-btn tb-pink" title="Rose" onclick="setTheme('pink',this)"></div>
+      <div class="theme-btn tb-blue" title="Bleu" onclick="setTheme('blue',this)"></div>
+      <div class="theme-btn tb-dark" title="Sombre" onclick="setTheme('dark',this)"></div>
+      <div class="theme-btn tb-light" title="Clair" onclick="setTheme('light',this)"></div>
+    </div>
+    <button class="mobile-nav-toggle" onclick="toggleNav()">☰</button>
+  </div>
+</nav>
+
+<!-- ========== ACCUEIL ========== -->
+<div class="page active" id="page-accueil">
+  <div class="hero">
+    <div class="hero-badge">Espace Formation · 2025–2026</div>
+    <h1>Formons les<br><span>Builders</span><br>de Demain</h1>
+    <p class="hero-sub">L'espace formation de DATAIKOS : des formations de haut niveau pour les ingénieurs et chercheurs qui construisent le futur technologique africain.</p>
+    <div class="hero-btns">
+      <button class="btn btn-primary" onclick="showPage('formation')">Voir les formations →</button>
+      <button class="btn btn-outline" onclick="showPage('quizz')">Passer un quizz</button>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-num">01</div>
+      <div class="stat-label">Formation en cours</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">07</div>
+      <div class="stat-label">Quizz disponibles</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">04</div>
+      <div class="stat-label">Formateurs actifs</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">∞</div>
+      <div class="stat-label">Impact Afrique</div>
+    </div>
+  </div>
+
+  <div class="about-section">
+    <div class="section-tag">À propos du collectif</div>
+    <h2 class="section-title">DATAIKOS - Distributed<br>Intelligence. Engineered.</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>DATAIKOS est un <strong>collectif d'étudiants ingénieurs et chercheurs</strong> spécialisés dans l'IA distribuée, l'Edge Computing et l'IoT industriel. Fondé à Douala, opérant aux standards de la Silicon Valley.</p>
+        <p>Notre mission : résoudre les défis africains avec des solutions de classe mondiale. Nous ne suivons pas le futur — <em>nous le construisons.</em></p>
+        <p>L'espace formation est le pilier académique de DATAIKOS, permettant à chaque membre et partenaire d'atteindre l'excellence technique requise par nos projets.</p>
+        <div style="margin-top:1.5rem;">
+          <button class="btn btn-outline" onclick="window.open('https://dataikos.netlify.app')">Visiter le site principal ↗</button>
+        </div>
+      </div>
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-icon"></div>
+          <div class="value-title">Intelligence Distribuée</div>
+          <div class="value-desc">Traitement optimal, du edge au cloud.</div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon"></div>
+          <div class="value-title">Ingénierie de Précision</div>
+          <div class="value-desc">Chaque ligne de code reflète l'excellence.</div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon"></div>
+          <div class="value-title">Ancrage Africain</div>
+          <div class="value-desc">Douala comme point de départ, le monde comme terrain de jeu.</div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon"></div>
+          <div class="value-title">Formation d'Excellence</div>
+          <div class="value-desc">Des formations aux standards internationaux.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="site-intro">
+    <div class="site-intro-inner">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:1rem;">
+        <div class="site-intro-badge"><img src="images/2.png" alt="test"></div>
+        <div style="font-size:12px;color:var(--text-faint);text-align:center;font-family:'Space Mono',monospace;">v1.0 · 2025</div>
+      </div>
+      <div>
+        <div class="section-tag">L'espace formation DATAIKOS</div>
+        <h3 style="font-size:1.4rem;font-weight:800;margin-bottom:1rem;">Votre plateforme d'apprentissage<br>technique de référence</h3>
+        <p style="color:var(--text-muted);font-size:14px;margin-bottom:1.5rem;">Cet espace centralise toutes les formations proposées par DATAIKOS et ses partenaires. Chaque formation est accompagnée de quizz progressifs pour valider vos compétences, du niveau néophyte à expert.</p>
+        <div class="features-mini">
+          <div class="feature-mini"><div class="feature-mini-dot"></div>Formations structurées</div>
+          <div class="feature-mini"><div class="feature-mini-dot"></div>Quizz interactifs</div>
+          <div class="feature-mini"><div class="feature-mini-dot"></div>Suivi de progression</div>
+          <div class="feature-mini"><div class="feature-mini-dot"></div>Attestations officielles</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="group-photo">
+    <div class="group-photo-placeholder">
+      <div class="hex-grid">
+        <img src="images/7.jpg" alt="logo">
+      </div>
+      <p style="font-size:14px;"> Photo du collectif DATAIKOS</p>
+      <p style="font-size:12px;margin-top:4px;">Douala · Cameroun · World</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== FORMATION ========== -->
+<div class="page" id="page-formation">
+  <div id="formations-list">
+    <div class="page-header">
+      <div class="section-tag">Catalogue</div>
+      <h2 class="section-title">Nos Formations</h2>
+      <p style="color:var(--text-muted);max-width:500px;margin:0 auto;">Formations techniques de haut niveau dispensées par les membres experts de DATAIKOS.</p>
+    </div>
+    <div class="formations-grid">
+      <div class="formation-card" onclick="showFormation('good-deal')">
+        <div class="formation-banner"><img src="images/2.png" alt="test">
+        </div>
+        <div class="formation-body">
+          <div class="status-badge status-en-cours"><div class="status-dot"></div>En cours</div>
+          <h3>Good Deal</h3>
+          <p>Formation complète en gestion des stocks, prise de décision stratégique avec le diagramme de Pareto et initiation au prompt engineering, destinée aux membres et amis du collectif DATAIKOS.</p>
+          <div class="formation-meta">
+            <span>2026</span>
+            <span>7 quizz</span>
+            <span>Néophyte → Expert N1</span>
+          </div>
+          <button class="btn btn-primary" style="width:100%;justify-content:center;">Voir les détails →</button>
+        </div>
+      </div>
+      <div class="formation-card" style="opacity:0.6;cursor:default;">
+        <div class="formation-banner" style="background:linear-gradient(135deg,#334155,#475569);">
+          <div class="formation-banner-title" style="font-size:1.2rem;">PROCHAINE<br>FORMATION</div>
+        </div>
+        <div class="formation-body">
+          <div class="status-badge status-prevu"><div class="status-dot"></div>Prévue</div>
+          <h3>À venir…</h3>
+          <p>De nouvelles formations seront bientôt ajoutées. Restez connectés aux annonces de DATAIKOS.</p>
+          <div class="formation-meta"><span>TBD</span></div>
+          <button class="btn btn-outline" style="width:100%;justify-content:center;" disabled>Bientôt disponible</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="formation-detail" id="formation-good-deal">
+    <button class="back-btn" onclick="showFormationList()">← Retour aux formations</button>
+    <div class="detail-hero">
+      <div class="detail-hero-content">
+        <img src="images/2.png" alt="test">
+        <div class="status-badge status-en-cours" style="margin-bottom:1rem;background:rgba(255,255,255,0.2);color:white;border:1px solid rgba(255,255,255,0.3);"><div class="status-dot" style="background:white;"></div>En cours</div>
+        <h2>Good Deal</h2>
+        <p>Gestion des stocks · Pareto · Prise de décision · Prompt engineering</p>
+      </div>
+    </div>
+    <div class="detail-grid">
+      <div class="detail-main">
+        <div class="info-card">
+          <h4>À propos de cette formation</h4>
+          <p style="font-size:14px;color:var(--text-muted);line-height:1.8;">
+            <strong>Good Deal</strong> est l’une des premières formations de DATAIKOS, un programme concret de 10 jours pour maîtriser la gestion des stocks, la prise de décision avec Pareto et l’art d’interroger l’IA (prompt engineering).
+          </p>
+          <p style="font-size:14px;color:var(--text-muted);line-height:1.8;margin-top:1rem;">
+            Des cas pratiques de gestion des stocks, des simulations d’aide à la décision avec le diagramme de Pareto, et des analyses concrètes de requêtes en prompt engineering permettent aux participants de développer une expertise solide, progressive, du niveau néophyte jusqu’à Expert N1.
+          </p>
+        </div>
+        <div class="info-card">
+          <h4>Objectifs pédagogiques</h4>
+             <ul style="font-size:14px;color:var(--text-muted);line-height:2;padding-left:1.5rem;">
+                <li>Comprendre et calculer les indicateurs clés de gestion des stocks (rotation, stock de sécurité, taux de rupture)</li>
+                <li>Appliquer le diagramme de Pareto (80/20) pour identifier les causes prioritaires dans l’analyse de données</li>
+                <li>Formuler des prompts efficaces pour interroger une IA générative et automatiser des tâches décisionnelles</li>
+                <li>Construire un tableau de bord interactif sous Excel à partir de données opérationnelles</li>
+                <li>Interpréter les résultats d’une analyse Pareto pour prendre des décisions stratégiques en entreprise</li>
+                <li>Utiliser l’IA comme assistant dans la gestion des stocks et la génération de rapports</li>
+                <li>Atteindre le niveau Expert N1 en maîtrise des outils d’aide à la décision (Pareto, Excel, prompt engineering)</li>
+             </ul>
+        </div>
+      </div>
+      <div class="detail-sidebar">
+        <div class="info-card">
+          <h4>📊 Informations</h4>
+          <div class="info-row"><span class="label">Statut</span><span class="val" style="color:#1a7a4a;">En cours ●</span></div>
+          <div class="info-row"><span class="label">Année</span><span class="val">2026</span></div>
+          <div class="info-row"><span class="label">Domaine</span><span class="val">Excel & Ingenierie Prompt</span></div>
+          <div class="info-row"><span class="label">Niveau</span><span class="val">Néophyte → Expert N1</span></div>
+          <div class="info-row"><span class="label">Quizz</span><span class="val">7 quizz</span></div>
+          <div class="info-row"><span class="label">Questions/quiz</span><span class="val">20 questions</span></div>
+        </div>
+        <div class="info-card">
+          <h4 style="margin-bottom:1rem;">Quizz associés</h4>
+          <div id="formation-quizz-list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== QUIZZ ========== -->
+<div class="page" id="page-quizz">
+  <div class="page-header">
+    <div class="section-tag">Évaluations</div>
+    <h2 class="section-title">Tous les Quizz</h2>
+    <p style="color:var(--text-muted);max-width:500px;margin:0 auto;">Testez vos connaissances avec nos quizz progressifs. Chaque quizz est lié à une formation spécifique.</p>
+  </div>
+  <div class="quizz-grid" id="quizz-grid"></div>
+</div>
+
+<!-- ========== LAUREATS ========== -->
+<div class="page" id="page-laureats">
+  <div class="page-header">
+    <div class="section-tag">Communauté</div>
+    <h2 class="section-title">Lauréats & Formateurs</h2>
+    <p style="color:var(--text-muted);max-width:500px;margin:0 auto;">Découvrez ceux qui font vivre l'espace formation DATAIKOS.</p>
+  </div>
+  <div class="laureats-tabs">
+    <div class="laureat-tab active" onclick="switchLaureatTab('formes')">Formés</div>
+    <div class="laureat-tab" onclick="switchLaureatTab('formateurs')">Formateurs</div>
+  </div>
+  <div class="laureat-section active" id="tab-formes">
+    <div class="people-grid" id="formes-grid"></div>
+  </div>
+  <div class="laureat-section" id="tab-formateurs">
+    <div class="people-grid" id="formateurs-grid"></div>
+  </div>
+</div>
+
+<!-- QUIZ OVERLAY -->
+<div class="quiz-overlay" id="quizOverlay">
+  <div class="quiz-container">
+    <div class="quiz-header">
+      <div>
+        <div class="quiz-meta" id="quizTitle">Quiz</div>
+        <div class="quiz-meta" id="quizLevel" style="color:var(--accent);margin-top:2px;"></div>
+      </div>
+      <div class="quiz-close" onclick="closeQuiz()">✕</div>
+    </div>
+    <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="progressFill" style="width:0%"></div></div>
+    <div id="quizContent"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo"><div class="logo-fallback"><img src="images/10.png" alt="test"></div> DATAIKOS</div>
+  <div class="footer-tagline">"Distributed Intelligence. Engineered."</div>
+  <div class="footer-links">
+    <a onclick="showPage('accueil')">Accueil</a>
+    <a onclick="showPage('formation')">Formation</a>
+    <a onclick="showPage('quizz')">Quizz</a>
+    <a onclick="showPage('laureats')">Lauréats</a>
+    <a onclick="window.open('https://dataikos.netlify.app')">Site principal ↗</a>
+  </div>
+  <div class="footer-copy">© 2026 DATAIKOS · Douala, Cameroun · Tous droits réservés</div>
+</footer>
+
+<script>
+// ============================================================
+// DATA
+// ============================================================
+// QUIZZ_DATA pour la formation Good Deal DATAIKOS
+// Thèmes : Gestion des stocks, Diagramme de Pareto (80/20), Prompt Engineering
+// 7 quiz, 20 questions chacun, niveau Néophyte → Expert N1
+// Chaque quiz couvre les trois thèmes avec difficulté progressive
+// ============================================================
+
+const QUIZZ_DATA = [
+  {
+    id: 'q1',
+    formationId: 'good-deal',
+    titre: 'Bases des stocks, Pareto et prompt',
+    niveau: 'Néophyte',
+    niveauClass: 'lvl-0',
+    num: 1,
+    description: 'Les bases absolues : vocabulaire des stocks, principe 80/20, premier contact avec les prompts.',
+    questions: [
+      { q: "Qu'est-ce que le stock de sécurité ?", options: ["Le stock maximum autorisé", "Le stock minimum pour éviter une rupture", "Le stock vendu chaque mois", "Le stock commandé mais non livré"], r: 1, explication: "Le stock de sécurité est une quantité supplémentaire maintenue pour faire face aux aléas (retards, pics de demande)." },
+      { q: "La loi de Pareto (80/20) signifie que :", options: ["80% des effets viennent de 20% des causes", "20% des effets viennent de 80% des causes", "Les effets sont répartis équitablement", "Il n'y a pas de règle générale"], r: 0, explication: "Le principe de Pareto énonce que, dans de nombreux phénomènes, environ 80 % des conséquences proviennent de 20 % des causes." },
+      { q: "En prompt engineering, que signifie 'prompt' ?", options: ["Une récompense donnée à l'IA", "L'instruction écrite qu'on donne à une IA", "Un type de donnée numérique", "Une fonction Excel"], r: 1, explication: "Un prompt est la consigne, la question ou l'instruction que vous adressez à un modèle d'IA pour obtenir une réponse." },
+      { q: "Quel indicateur mesure la vitesse de renouvellement d'un stock ?", options: ["Le taux de rupture", "La rotation des stocks", "Le stock d'alerte", "Le coût de possession"], r: 1, explication: "La rotation des stocks indique combien de fois le stock est entièrement renouvelé sur une période." },
+      { q: "Dans un diagramme de Pareto, comment classe-t-on les causes ?", options: ["Par ordre alphabétique", "Par ordre décroissant d'importance (ex. coût, fréquence)", "Par date d'apparition", "Aléatoirement"], r: 1, explication: "Les causes sont triées de la plus impactante à la moins impactante pour identifier les 20 % prioritaires." },
+      { q: "Quel est l'objectif principal d'un prompt bien écrit ?", options: ["Être très long", "Être précis et guider l'IA vers la réponse souhaitée", "Contenir des erreurs pour tester l'IA", "Utiliser des mots compliqués"], r: 1, explication: "Un prompt précis réduit l'ambiguïté et améliore la pertinence de la réponse de l'IA." },
+      { q: "La formule Excel =SI(A1<10 ; \"Alerte\" ; \"OK\") permet de :", options: ["Additionner des cellules", "Prendre une décision conditionnelle (alerte si stock bas)", "Faire une recherche", "Tracer un graphique"], r: 1, explication: "La fonction SI renvoie une valeur si la condition est vraie, une autre si elle est fausse – idéale pour les alertes de stock." },
+      { q: "Dans une gestion de stocks, la méthode FIFO signifie :", options: ["First In, First Out (premier entré, premier sorti)", "Last In, First Out", "First In, Last Out", "Fifo est un logiciel"], r: 0, explication: "FIFO signifie que les premiers produits entrés en stock sont les premiers à être utilisés ou vendus." },
+      { q: "Le prompt 'Explique-moi le principe de Pareto comme si j'avais 10 ans' utilise quelle technique ?", options: ["Few-shot", "Roleplay (persona)", "Zero-shot", "Chained prompting"], r: 1, explication: "Demander à l'IA d'adopter un rôle (ici, expliquer à un enfant) est du roleplay prompting." },
+      { q: "Quel graphique utilise-t-on classiquement pour visualiser une analyse de Pareto ?", options: ["Camembert", "Histogramme + courbe des cumulés", "Nuage de points", "Graphique en aires"], r: 1, explication: "Le diagramme de Pareto combine des barres (valeurs individuelles) et une courbe des pourcentages cumulés." },
+      { q: "Un taux de rupture de stock de 5% signifie :", options: ["5% des commandes n'ont pu être satisfaites", "5% du stock est périmé", "5% des produits sont en promotion", "5% des livraisons sont en retard"], r: 0, explication: "Le taux de rupture mesure la proportion de demandes non satisfaites faute de stock disponible." },
+      { q: "Le prompt 'Donne-moi 3 exemples de causes de rupture de stock' est un exemple de :", options: ["Zero-shot (sans exemple)", "Few-shot (avec exemples)", "Chain of thought", "Negative prompting"], r: 0, explication: "Zero-shot car vous ne donnez aucun exemple du format souhaité." },
+      { q: "Dans Excel, la fonction SOMME.SI permet de :", options: ["Additionner toutes les cellules", "Additionner les cellules répondant à un critère", "Faire une moyenne conditionnelle", "Compter les cellules non vides"], r: 1, explication: "SOMME.SI additionne uniquement les valeurs d'une plage qui satisfont une condition donnée." },
+      { q: "Le 80/20 peut être appliqué en gestion de stocks pour :", options: ["Ignorer 80% des références", "Concentrer les efforts sur les 20% de références qui génèrent 80% de la valeur", "Doubler le stock", "Réduire tous les stocks de 20%"], r: 1, explication: "L'idée est de prioriser les produits à forte rotation ou forte valeur pour optimiser la gestion." },
+      { q: "Que signifie le terme 'stock dormant' ?", options: ["Stock très demandé", "Stock qui ne bouge pas depuis longtemps", "Stock en transit", "Stock commandé mais non livré"], r: 1, explication: "Le stock dormant est constitué d'articles qui ne sont plus vendus ou utilisés depuis une longue période." },
+      { q: "Pour améliorer un prompt, on peut :", options: ["Ajouter des contraintes et un format de sortie souhaité", "Raccourcir au maximum", "Écrire en majuscules", "Ne donner aucun contexte"], r: 0, explication: "Plus le prompt est spécifique (contexte, format, exemples), meilleure sera la réponse." },
+      { q: "Quelle est la formule du taux de rotation des stocks ?", options: ["Ventes / Stock moyen", "Stock moyen / Ventes", "(Ventes - Stock) / Ventes", "Stock final / Ventes"], r: 0, explication: "Le taux de rotation = coût des marchandises vendues / stock moyen (ou ventes / stock moyen pour simplifier)." },
+      { q: "Dans un diagramme de Pareto, la courbe des pourcentages cumulés doit :", options: ["Partir de 0 et monter jusqu'à 100%", "Partir de 100% et descendre", "Rester constante", "Varier aléatoirement"], r: 0, explication: "Le cumul croît de 0% (premier élément) à 100% (dernier élément) pour montrer la contribution accumulée." },
+      { q: "Un prompt 'few-shot' contient :", options: ["Aucun exemple", "Quelques exemples du format attendu", "Une seule question", "Une contrainte de longueur"], r: 1, explication: "Few-shot = on donne quelques exemples à l'IA pour qu'elle reproduise le schéma." },
+      { q: "Quel indicateur déclenche une alerte quand le stock passe sous un seuil ?", options: ["Stock maximum", "Stock d'alerte (ou point de commande)", "Stock virtuel", "Stock tampon"], r: 1, explication: "Le stock d'alerte est le niveau à partir duquel on doit réapprovisionner pour éviter une rupture." }
+    ]
+  },
+  {
+    id: 'q2',
+    formationId: 'good-deal',
+    titre: 'Approfondissement : calculs, Pareto et prompts intermédiaires',
+    niveau: 'Débutant',
+    niveauClass: 'lvl-1',
+    num: 2,
+    description: 'Calculs de stocks, construction d’un diagramme de Pareto, techniques de prompt (roleplay, few-shot).',
+    questions: [
+      { q: "La formule du stock moyen est :", options: ["(Stock initial + Stock final) / 2", "Stock final - Stock initial", "Stock initial × Stock final", "Stock initial + Stock final"], r: 0, explication: "Le stock moyen se calcule généralement par la moyenne du stock en début et fin de période." },
+      { q: "Dans un diagramme de Pareto, à partir de quel % cumulé considère-t-on généralement les causes 'vitales' ?", options: ["50%", "80%", "95%", "100%"], r: 1, explication: "Les causes représentant environ 80% des effets sont dites vitales (20% des causes)." },
+      { q: "Le 'chain prompting' consiste à :", options: ["Enchaîner plusieurs prompts où la sortie du premier sert d'entrée au second", "Donner une longue liste d'exemples", "Demander une réponse en chaîne de caractères", "Utiliser une seule instruction complexe"], r: 0, explication: "Chain prompting décompose un problème complexe en étapes successives." },
+      { q: "Si le stock initial est 500, les entrées 200, les sorties 350, le stock final est :", options: ["250", "350", "450", "550"], r: 1, explication: "Stock final = Stock initial + Entrées - Sorties = 500+200-350 = 350." },
+      { q: "Pour créer un diagramme de Pareto sous Excel, on a besoin de :", options: ["Colonnes : causes, valeurs, % individuel, % cumulé", "Un seul tableau de valeurs", "Un graphique en secteurs", "Une macro VBA"], r: 0, explication: "Les colonnes indispensables sont : catégories, effectifs ou coûts, pourcentage individuel et pourcentage cumulé." },
+      { q: "Un prompt 'Tu es un expert logistique...' utilise la technique :", options: ["Few-shot", "Roleplay (persona)", "Zero-shot", "Negative"], r: 1, explication: "On assigne un rôle à l'IA pour adapter son style et son contenu." },
+      { q: "Le coût de possession du stock comprend généralement :", options: ["Coût d'achat uniquement", "Coût de stockage, assurance, immobilisation financière", "Coût de transport", "Coût de rupture"], r: 1, explication: "Le coût de possession inclut le loyer, l'assurance, la détérioration et le coût du capital immobilisé." },
+      { q: "Comment calculer le pourcentage individuel d’une cause dans un Pareto ?", options: ["(Valeur de la cause / Somme totale) × 100", "(Somme totale / Valeur de la cause) × 100", "Valeur de la cause / 100", "Valeur de la cause - Moyenne"], r: 0, explication: "Le % individuel = (valeur de la catégorie / somme de toutes les valeurs) × 100." },
+      { q: "Le prompt 'Voici un exemple : \"Pompe : critique\". Maintenant classifie : Moteur' est un exemple de :", options: ["Zero-shot", "Few-shot (un seul exemple)", "Roleplay", "Chaînage"], r: 1, explication: "On donne un exemple (few-shot) pour guider le format de la réponse." },
+      { q: "La formule Excel =RECHERCHEV(E2; A2:B100; 2; FAUX) permet de :", options: ["Additionner des ventes", "Trouver la valeur correspondant à une clé dans un tableau", "Créer un graphique", "Filtrer des données"], r: 1, explication: "RECHERCHEV cherche une valeur dans la première colonne d’un tableau et renvoie une valeur d’une autre colonne." },
+      { q: "Le point de commande (reorder point) se calcule par :", options: ["Demande moyenne × Délai de réapprovisionnement + Stock de sécurité", "Stock initial / Délai", "Demande totale / Nombre de références", "Stock minimum × 2"], r: 0, explication: "Point de commande = (consommation moyenne par jour × délai) + stock de sécurité." },
+      { q: "Dans un prompt, le 'meta-prompting' consiste à :", options: ["Demander à l’IA de créer un autre prompt", "Utiliser des métaphores", "Ajouter des données météo", "Donner une consigne très courte"], r: 0, explication: "Un méta-prompt est une instruction qui sert à générer ou améliorer d’autres prompts." },
+      { q: "Le taux de service (niveau de service) en stock correspond à :", options: ["Probabilité de ne pas être en rupture", "Valeur du stock en €", "Nombre de commandes par mois", "Taux de rotation"], r: 0, explication: "Le niveau de service est la probabilité que la demande soit satisfaite sans rupture." },
+      { q: "Pour interpréter un Pareto, on regarde :", options: ["La pente initiale de la courbe cumulée", "La hauteur des barres", "Le nombre de catégories", "La couleur du graphique"], r: 0, explication: "Une pente raide au début indique que quelques causes concentrent l’essentiel de l’effet." },
+      { q: "Le prompt 'Décompose ce problème étape par étape' relève du :", options: ["Chain-of-thought prompting", "Zero-shot", "Negative prompting", "Roleplay"], r: 0, explication: "Chain-of-thought incite l'IA à montrer son raisonnement intermédiaire." },
+      { q: "Le stock d'écrêtement (ou stock tampon) sert à :", options: ["Lisser les variations de la demande", "Augmenter les coûts", "Remplacer le stock de sécurité", "Diminuer la rotation"], r: 0, explication: "Le stock tampon absorbe les pics de demande non prévus." },
+      { q: "Dans un Pareto, la courbe des % cumulés est tracée sur :", options: ["Axe des ordonnées secondaire", "Axe des abscisses", "Même axe que les barres", "Aucun axe"], r: 0, explication: "On utilise généralement un axe secondaire à droite pour les pourcentages cumulés (0-100%)." },
+      { q: "Le prompt 'Ignorer les opinions non factuelles' est une technique dite :", options: ["Negative prompting", "Positive prompting", "Roleplay", "Few-shot"], r: 0, explication: "Negative prompting indique ce qu'il ne faut pas faire." },
+      { q: "La méthode ABC de gestion des stocks classe les articles en :", options: ["A (très important), B (important), C (peu important)", "Par ordre alphabétique", "Par couleur", "Par date d'achat"], r: 0, explication: "La méthode ABC est dérivée du principe de Pareto : A = 80% de valeur, B=15%, C=5%." },
+      { q: "Pour qu’un prompt soit efficace, il faut :", options: ["Un contexte clair, une instruction précise, un format attendu", "Le moins de mots possible", "Des majuscules et des points d'exclamation", "Une question fermée"], r: 0, explication: "Un bon prompt combine contexte, tâche, contraintes et format." }
+    ]
+  },
+  {
+    id: 'q3',
+    formationId: 'good-deal',
+    titre: 'Maîtrise opérationnelle : stocks avancés, Pareto, prompts complexes',
+    niveau: 'Intermédiaire',
+    niveauClass: 'lvl-2',
+    num: 3,
+    description: 'Modèles de réapprovisionnement, Pareto multicritère, techniques de prompt comme le chaînage et le méta-prompt.',
+    questions: [
+      { q: "Le modèle de Wilson (EOQ) détermine :", options: ["La quantité économique de commande", "Le point de commande", "Le stock de sécurité", "Le coût de rupture"], r: 0, explication: "L'EOQ (Economic Order Quantity) minimise le coût total de gestion des stocks (passation + possession)." },
+      { q: "Dans un diagramme de Pareto avec plusieurs critères (coût, fréquence), on peut :", options: ["Utiliser une pondération ou une analyse multicritère", "Additionner les critères bruts", "Prendre le maximum", "Ignorer les autres critères"], r: 0, explication: "On peut attribuer des poids pour combiner plusieurs dimensions." },
+      { q: "Le 'meta-prompt' suivant : 'Crée un prompt pour analyser des ruptures de stock' est un exemple de :", options: ["Prompt auto-référent", "Roleplay", "Few-shot", "Zero-shot"], r: 0, explication: "Un méta-prompt demande à l’IA de générer un autre prompt." },
+      { q: "Formule du coût total de possession d'un stock :", options: ["(Quantité commandée / 2) × Coût unitaire de possession", "Quantité × Coût d'achat", "Stock moyen × Prix", "Rupture × Pénalité"], r: 0, explication: "Le coût de possession annuel = stock moyen × coût de possession unitaire." },
+      { q: "Pour réaliser un Pareto dynamique sous Excel (actualisé automatiquement), on utilise :", options: ["Tableau croisé dynamique + graphique croisé", "Filtres manuels", "Macros obligatoires", "Graphique en aires"], r: 0, explication: "Un TCD avec mise à jour automatique des données permet un Pareto interactif." },
+      { q: "Technique avancée de prompt : le 'tree-of-thoughts' permet :", options: ["Explorer plusieurs chemins de raisonnement en parallèle", "Ne donner qu'une seule réponse", "Générer des images", "Traduire en plusieurs langues"], r: 0, explication: "Tree-of-thoughts explore différentes branches de réflexion avant de conclure." },
+      { q: "Le coût de passation de commande comprend :", options: ["Frais de transport, de traitement, de suivi", "Uniquement le prix des marchandises", "Les coûts de stockage", "Les pénalités de retard"], r: 0, explication: "Le coût de passation est lié à la préparation et au lancement de chaque commande." },
+      { q: "Lorsque les données d'un Pareto sont très dispersées, on peut :", options: ["Regrouper les petites causes en une catégorie 'Autres'", "Supprimer les causes mineures", "Multiplier les catégories", "Ignorer le graphique"], r: 0, explication: "Regrouper les éléments à faible impact dans 'Autres' rend le diagramme plus lisible." },
+      { q: "Un prompt 'Utilise la méthode Socratic' demande à l'IA de :", options: ["Poser des questions pour guider l'utilisateur", "Donner la réponse directement", "Raconter une histoire", "Citer des sources"], r: 0, explication: "La méthode socratique utilise des questions pour faire réfléchir." },
+      { q: "Le stock de sécurité dépend principalement :", options: ["De la variabilité de la demande et du délai", "Du coût d'achat", "De la couleur des produits", "Du nombre de fournisseurs"], r: 0, explication: "Plus la demande et les délais sont variables, plus le stock de sécurité est élevé." },
+      { q: "Le diagramme de Pareto peut être utilisé pour prioriser les actions en maintenance :", options: ["Vrai, il identifie les équipements causant le plus d'arrêts", "Faux, c'est réservé à la qualité", "Seulement pour les stocks", "Jamais"], r: 0, explication: "Oui, par exemple 20% des machines causent 80% des pannes." },
+      { q: "Le prompting 'few-shot' améliore la précision surtout pour :", options: ["Les tâches de formatage ou de classification", "Les questions très simples", "La traduction", "Le calcul mathématique"], r: 0, explication: "Few-shot montre le format attendu, parfait pour structurer des réponses." },
+      { q: "La formule du niveau de reapprovisionnement (ROP) avec délai variable est :", options: ["Demande moyenne × Délai moyen + SS", "Demande max × Délai max", "Demande min × Délai min", "Stock initial × Taux"], r: 0, explication: "ROP = demande moyenne × délai moyen + stock de sécurité (couvre les variations)." },
+      { q: "Dans un prompt, l'instruction 'Agis comme un analyste logistique' relève du :", options: ["Roleplay (persona)", "Zero-shot", "Few-shot", "Negative"], r: 0, explication: "On donne un rôle pour orienter le style et le contenu." },
+      { q: "La méthode de réapprovisionnement 'juste à temps' vise :", options: ["Stocks minimaux, livraisons fréquentes", "Stocks de sécurité élevés", "Commandes annuelles", "Stock tampon important"], r: 0, explication: "Le JAT réduit les stocks au strict nécessaire, avec des livraisons synchronisées." },
+      { q: "Un prompt chaîné pour l'analyse de stock pourrait être :", options: ["1. Lister les ruptures ; 2. Pour chaque rupture, proposer une cause ; 3. Recommander une action", "Un seul prompt long", "Un seul mot", "Une question sans contexte"], r: 0, explication: "Le chaînage décompose une analyse complexe en étapes séquentielles." },
+      { q: "Le coût de rupture de stock inclut :", options: ["Perte de vente, perte de client, pénalités", "Coût de stockage", "Coût de commande", "Amortissement"], r: 0, explication: "La rupture a des impacts commerciaux et financiers souvent sous-estimés." },
+      { q: "Pour automatiser un tableau de bord de stocks sous Excel, on utilise :", options: ["Formules dynamiques, TCD, segments", "Macros complexes obligatoires", "Saisie manuelle quotidienne", "Google Sheets"], r: 0, explication: "Les TCD et formules conditionnelles permettent un tableau de bord interactif sans VBA." },
+      { q: "Le 'contexte' dans un prompt est important car :", options: ["Il évite les réponses trop générales", "Il n'a pas d'importance", "Il allonge inutilement", "Il perturbe l'IA"], r: 0, explication: "Fournir le contexte (secteur, contraintes, public) affine la pertinence." },
+      { q: "Dans la méthode ABC, les articles de catégorie A doivent faire l'objet :", options: ["D'un suivi rigoureux et fréquent", "D'aucun suivi particulier", "D'une commande annuelle", "D'un stock de sécurité nul"], r: 0, explication: "Les articles A (80% de valeur) justifient une gestion fine et des inventaires réguliers." }
+    ]
+  },
+  {
+    id: 'q4',
+    formationId: 'good-deal',
+    titre: 'Optimisation avancée : modèles stochastiques, Pareto multicritère, prompt engineering expert',
+    niveau: 'Intermédiaire+',
+    niveauClass: 'lvl-3',
+    num: 4,
+    description: 'Gestion des stocks sous incertitude, Pareto avec pondération, prompt engineering avancé (contrôle des biais, arbres de décision).',
+    questions: [
+      { q: "Le modèle de réapprovisionnement à période fixe (P-model) se caractérise par :", options: ["Des commandes à intervalles réguliers, quantités variables", "Des quantités fixes, intervalles variables", "Un stock zéro", "Un seul fournisseur"], r: 0, explication: "Dans le modèle à période fixe, on commande tous les T jours la quantité nécessaire pour remonter au stock cible." },
+      { q: "Pour pondérer plusieurs critères dans un Pareto (ex. coût et délai), on peut :", options: ["Normaliser chaque critère et appliquer une somme pondérée", "Faire deux graphiques séparés", "Prendre le critère le plus important", "Ignorer les autres"], r: 0, explication: "La normalisation puis la combinaison linéaire permet un Pareto multicritère." },
+      { q: "Le prompt 'Décompose ce problème de stock en sous-problèmes et résous-les un par un' utilise :", options: ["Chain-of-thought / decomposition", "Few-shot", "Roleplay", "Negative"], r: 0, explication: "La décomposition en étapes est du chain-of-thought avancé." },
+      { q: "Le calcul du stock de sécurité avec une demande normale suit :", options: ["SS = z × σ_d × √(délai)", "SS = moyenne × coeff", "SS = max - min", "SS = (délai × demande) / 2"], r: 0, explication: "z est le coefficient lié au niveau de service souhaité, σ_d l'écart-type de la demande pendant le délai." },
+      { q: "Dans un Pareto dynamique, on peut ajouter des segments (slicers) pour :", options: ["Filtrer par période, produit, etc.", "Modifier les couleurs", "Supprimer des données", "Exporter en PDF"], r: 0, explication: "Les slicers rendent le tableau de bord interactif." },
+      { q: "Le prompting 'tree-of-thoughts' est particulièrement utile pour :", options: ["Les problèmes complexes nécessitant l'exploration de plusieurs pistes", "Les questions à réponse unique", "Les calculs simples", "La génération d'images"], r: 0, explication: "ToT explore différents chemins de raisonnement avant de converger." },
+      { q: "La formule du coût total de gestion de stock (modèle de Wilson) est :", options: ["CT = (D/Q)×Cp + (Q/2)×Cdp", "CT = D×P + Cp", "CT = Q×Cdp", "CT = D×Cp + Q×Cdp"], r: 0, explication: "D = demande annuelle, Q = quantité commandée, Cp = coût de passation, Cdp = coût de possession unitaire." },
+      { q: "Pour éviter les biais de confirmation dans un prompt, on peut :", options: ["Demander à l'IA de fournir des arguments contraires (anti-prompt)", "Ne poser que des questions fermées", "Ignorer les réponses", "Raccourcir le prompt"], r: 0, explication: "La technique du 'debiasing' consiste à demander explicitement les points faibles ou les contre-arguments." },
+      { q: "Le stock de sécurité peut être réduit en :", options: ["Améliorant la prévision et réduisant les délais", "Augmentant la variabilité", "Diminuant le niveau de service", "Rallongeant les délais"], r: 0, explication: "Moins d'incertitude ⇒ moins de stock de sécurité." },
+      { q: "Un diagramme de Pareto peut être combiné avec un diagramme d'Ishikawa pour :", options: ["Identifier les causes profondes des 20% vitaux", "Remplacer le Pareto", "Créer un camembert", "Faire des prévisions"], r: 0, explication: "Le Pareto sélectionne les problèmes majeurs, Ishikawa en analyse les causes." },
+      { q: "Le prompting 'auto-CoT' (auto chain-of-thought) consiste à :", options: ["Faire générer des raisonnements par l'IA elle-même, puis les utiliser", "Donner des exemples de raisonnements rédigés par un humain", "Ne pas utiliser de raisonnement", "Poser des questions sans réponse"], r: 0, explication: "Auto-CoT échantillonne des questions et génère automatiquement des chaînes de pensée." },
+      { q: "La méthode FEFO (First Expired, First Out) est utilisée pour :", options: ["Gérer les produits périssables (date de péremption)", "Gérer les stocks standard", "Prioriser les plus anciens", "Calculer la rotation"], r: 0, explication: "FEFO sort d'abord les produits dont la date de péremption est la plus proche." },
+      { q: "Dans un prompt, la technique du 'rôle négatif' (ex. 'tu es un client mécontent') sert à :", options: ["Anticiper les objections et préparer les réponses", "Tromper l'IA", "Générer du spam", "Raccourcir la réponse"], r: 0, explication: "Jouer des rôles adverses permet de se préparer aux situations difficiles." },
+      { q: "Le coût de possession unitaire annuel (Cdp) est souvent exprimé en % du coût d'achat :", options: ["Vrai, typiquement 15-30%", "Faux, c'est un coût fixe", "Seulement pour le transport", "Aucun rapport"], r: 0, explication: "On utilise un taux de possession (immobilisation, stockage, assurance) appliqué à la valeur unitaire." },
+      { q: "Pour générer un rapport automatique d'analyse de stock avec l'IA, le prompt doit inclure :", options: ["Source de données, métriques clés, format de sortie, contraintes", "Une seule phrase", "Aucune contrainte", "Le nom du logiciel"], r: 0, explication: "Un prompt structuré produit un rapport exploitable." },
+      { q: "Le modèle de Wilson suppose que :", options: ["La demande est connue et constante", "La demande est aléatoire", "Les délais sont variables", "Les coûts sont inconnus"], r: 0, explication: "Le modèle EOQ repose sur des hypothèses simplificatrices (demande constante, délai nul, etc.)." },
+      { q: "Le prompting 'few-shot' avec plusieurs exemples peut inclure jusqu'à :", options: ["Quelques dizaines, selon la longueur du contexte", "Un seul", "Aucune limite", "1000 exemples"], r: 0, explication: "La limite est la fenêtre de contexte du modèle (ex. 8k, 128k tokens)." },
+      { q: "La classification ABC combine souvent Pareto et :", options: ["Critère de valeur annuelle (CA)", "Date d'achat", "Fournisseur", "Couleur"], r: 0, explication: "La classe A se base sur la valeur de consommation (prix × consommation)." },
+      { q: "Un prompt 'Utilise la méthode des 5 pourquoi' pour analyser une rupture vise à :", options: ["Remonter à la cause racine", "Ajouter des étapes inutiles", "Trouver 5 coupables", "Augmenter le stock"], r: 0, explication: "La méthode des 5 pourquoi approfondit l'analyse causale." },
+      { q: "Dans un environnement multi-dépôts, le stock de sécurité peut être mutualisé pour :", options: ["Réduire le stock total à niveau de service égal", "Augmenter les coûts", "Complexifier la gestion", "Supprimer les ruptures"], r: 0, explication: "La mutualisation (risk pooling) diminue la variabilité globale, donc le SS total." }
+    ]
+  },
+  {
+    id: 'q5',
+    formationId: 'good-deal',
+    titre: 'Stocks avancés, Pareto stratégique, prompt engineering pour l’analyse',
+    niveau: 'Avancé',
+    niveauClass: 'lvl-4',
+    num: 5,
+    description: 'Modèles stochastiques, courbes ABC, Pareto avec arbres de décision, prompts pour l’analyse de données.',
+    questions: [
+      { q: "Le modèle (s, S) de gestion de stock signifie :", options: ["Commander jusqu'au niveau S quand le stock descend sous s", "Commander une quantité fixe Q", "Réapprovisionnement périodique", "Stock zéro"], r: 0, explication: "Le seuil s déclenche une commande pour remonter au niveau cible S." },
+      { q: "Un arbre de décision pour appliquer Pareto peut aider à :", options: ["Choisir entre plusieurs actions selon les probabilités d'impact", "Dessiner un histogramme", "Calculer des moyennes", "Faire des prévisions de vente"], r: 0, explication: "L'arbre de décision intègre les incertitudes et les gains pour prioriser." },
+      { q: "Le prompt 'Génère un script Python pour analyser un fichier CSV de stocks et produire un graphique Pareto' est un exemple de :", options: ["Prompt technique avec demande de code", "Roleplay", "Few-shot", "Meta-prompt"], r: 0, explication: "On demande une sortie précise (code) à partir d'une spécification." },
+      { q: "La formule du point de commande avec délai et demande incertains (distribution normale) :", options: ["ROP = μ_d × L + z × sqrt(L×σ_d² + μ_d²×σ_L²)", "ROP = μ_d + σ_d", "ROP = μ_d × L", "ROP = μ_d × L × z"], r: 0, explication: "On tient compte de la variabilité de la demande et du délai." },
+      { q: "La courbe ABC peut être combinée avec un Pareto pour :", options: ["Visualiser la contribution cumulée des classes", "Ignorer les classes C", "Remplacer le diagramme en barres", "Supprimer les classes A"], r: 0, explication: "On trace la courbe des % cumulés et on délimite les classes A, B, C." },
+      { q: "Le prompting 'self-consistency' consiste à :", options: ["Soumettre plusieurs fois la même question et prendre la réponse la plus fréquente", "Toujours répondre oui", "Ne jamais changer de réponse", "Poser des questions contradictoires"], r: 0, explication: "La self-consistency améliore la fiabilité des réponses du modèle." },
+      { q: "Le coût de stockage unitaire annuel inclut généralement :", options: ["Loyer, assurance, dépréciation, coût du capital", "Coût d'achat", "Frais de transport", "Salaires des vendeurs"], r: 0, explication: "Ce sont les coûts directs liés à la détention du stock." },
+      { q: "Dans un arbre de Pareto décisionnel, on peut pondérer les branches par :", options: ["La probabilité d’occurrence et l’impact monétaire", "Le nombre d’occurrences", "La couleur des produits", "La date"], r: 0, explication: "On calcule une espérance de gain pour guider le choix." },
+      { q: "Le prompt 'Génère un rapport d'analyse ABC avec recommandations' doit préciser :", options: ["Les colonnes du fichier source, les seuils de classification, le format", "Uniquement le titre", "Aucune précision", "La date"], r: 0, explication: "Un prompt efficace pour générer un rapport structuré est détaillé." },
+      { q: "Le modèle de réapprovisionnement continu (Q-model) se caractérise par :", options: ["Quantité fixe Q, point de commande s", "Période fixe", "Stock nul", "Commande aléatoire"], r: 0, explication: "On commande une quantité fixe Q chaque fois que le stock atteint le point s." },
+      { q: "La technique de prompt 'ReAct' (Reasoning + Acting) combine :", options: ["Raisonnement et actions (requêtes externes)", "Seulement du raisonnement", "Seulement des actions", "Du hasard"], r: 0, explication: "ReAct alterne réflexion et appel à des outils (API, calculs) pour résoudre des tâches." },
+      { q: "L'analyse de Pareto peut être étendue à la gestion de portefeuille de projets :", options: ["Vrai, pour concentrer les ressources sur 20% des projets apportant 80% de la valeur", "Faux", "Uniquement en finance", "Jamais"], r: 0, explication: "Le principe 80/20 est universel et s'applique à la priorisation." },
+      { q: "Le stock de sécurité avec demande et délai normaux se calcule via :", options: ["z × σ_délai", "moyenne + écart-type", "médiane", "aucune des réponses"], r: 0, explication: "SS = z × σ_leadtime (ou combinaison des variances)." },
+      { q: "Le prompting 'program-aided language models' (PoT) permet :", options: ["Déléguer les calculs arithmétiques à un interpréteur Python", "Écrire des poèmes", "Traduire en plusieurs langues", "Générer des images"], r: 0, explication: "PoT améliore la précision des calculs en générant du code exécutable." },
+      { q: "La méthode du double stock (two-bin) est une forme simplifiée de :", options: ["Système à point de commande", "Système à période fixe", "Juste à temps", "Stock mort"], r: 0, explication: "Deux bacs ; quand le premier est vide, on commande le second." },
+      { q: "Pour un Pareto sur les coûts de maintenance, les équipements vitaux seront ceux :", options: ["Dont le coût cumulé atteint 80%", "Avec la plus faible fréquence", "Les plus récents", "Les moins chers"], r: 0, explication: "Le Pareto identifie la minorité d'équipements générant la majorité des coûts." },
+      { q: "Le prompt 'Few-shot avec instructions négatives' peut s'écrire :", options: ["Voici des exemples ; ne réponds pas avec plus de 10 mots", "Voici des exemples ; réponds le plus long possible", "Ignore les exemples", "Donne une seule lettre"], r: 0, explication: "On combine des exemples et des contraintes pour orienter la sortie." },
+      { q: "Le taux de rotation élevé indique généralement :", options: ["Une bonne gestion (peu de stock dormant)", "Un stock excessif", "Des ruptures fréquentes", "Des coûts de stockage trop élevés"], r: 0, explication: "Un taux élevé signifie que le stock est renouvelé rapidement, signe d'efficience." },
+      { q: "Le prompt 'Évalue la robustesse de cette analyse de Pareto sous incertitude' relève du :", options: ["Prompt d'analyse critique", "Few-shot", "Roleplay", "Zero-shot simple"], r: 0, explication: "On demande une évaluation de la sensibilité." },
+      { q: "Dans un tableau de bord avancé, les indicateurs de stock peuvent inclure :", options: ["Rotation, couverture, taux de service, valeur du stock", "Seulement le prix", "La couleur des produits", "Le nom du fournisseur"], r: 0, explication: "Un bon dashboard combine plusieurs KPI pour piloter." }
+    ]
+  },
+  {
+    id: 'q6',
+    formationId: 'good-deal',
+    titre: 'Optimisation multi-produits, Pareto avancé, prompt engineering pour l’automatisation',
+    niveau: 'Expert',
+    niveauClass: 'lvl-5',
+    num: 6,
+    description: 'Gestion de stocks multi-produits, Pareto sur données massives, pipelines de prompts, IA pour la logistique.',
+    questions: [
+      { q: "La méthode de classification XYZ (basée sur la variabilité) croisée avec ABC donne :", options: ["Des classes comme AX (forte valeur, faible variabilité)", "Une seule classe", "Ignorer la variabilité", "Uniquement XYZ"], r: 0, explication: "Le croisement permet d'affiner la stratégie (AX : suivi rigoureux, CY : gestion simplifiée)." },
+      { q: "Pour un Pareto sur plusieurs milliers de références, on utilise souvent :", options: ["Un algorithme de tri et cumul automatisé (ex. Power Query)", "Un tri manuel", "Un camembert", "Aucune solution"], r: 0, explication: "Les outils décisionnels automatisent le calcul des pourcentages cumulés sur de gros volumes." },
+      { q: "Le prompt 'Crée un workflow de prompts pour analyser les ruptures de stock d’un entrepôt' est un :", options: ["Meta-prompt de conception de chaîne", "Few-shot", "Roleplay", "Zero-shot"], r: 0, explication: "On demande une architecture de plusieurs prompts en séquence." },
+      { q: "L’algorithme de Wagner-Within résout :", options: ["Le problème de lot-sizing dynamique", "Le tracé de Pareto", "La rotation des stocks", "La prévision de vente"], r: 0, explication: "Il détermine les quantités optimales à commander sur une période finie avec demande variable." },
+      { q: "Un Pareto sur des données multidimensionnelles peut être visualisé via :", options: ["Un arbre de Pareto (Pareto tree ou heatmap)", "Un simple histogramme", "Un nuage de points sans cumul", "Un tableau de chiffres"], r: 0, explication: "Des représentations avancées permettent de voir la contribution de plusieurs dimensions." },
+      { q: "Le prompt 'Utilise l’API d’un ERP pour récupérer les niveaux de stock et génère un rapport Pareto' nécessite :", options: ["Un prompt avec appel à outil (function calling)", "Un prompt classique", "Un prompt sans API", "Un prompt en chinois"], r: 0, explication: "Les modèles modernes peuvent invoquer des fonctions externes." },
+      { q: "La méthode de prévision de la demande de Croston est adaptée pour :", options: ["Les demandes intermittentes (pièces détachées)", "Les produits à forte rotation", "Les biens de consommation courante", "Les matières premières"], r: 0, explication: "Croston traite les séries avec beaucoup de zéros." },
+      { q: "Pour un Pareto sur des données de consommation avec saisonnalité, on doit :", options: ["Désaisonnaliser avant l’analyse", "Ne pas tenir compte", "Ajouter un coefficient saisonnier après", "Ignorer la saisonnalité"], r: 0, explication: "La désaisonnalisation évite de fausser les priorités." },
+      { q: "Le prompting 'few-shot avec raisonnement explicite' consiste à :", options: ["Donner des exemples de raisonnements étape par étape", "Donner seulement les réponses", "Ne donner aucun exemple", "Donner des exemples sans raisonnement"], r: 0, explication: "On montre comment raisonner, pas seulement la réponse." },
+      { q: "La méthode DRP (Distribution Requirements Planning) étend le calcul des besoins aux :", options: ["Réseaux de distribution multi-entrepôts", "Un seul entrepôt", "La production", "Les achats"], r: 0, explication: "DRP planifie les flux dans un réseau logistique." },
+      { q: "Le prompt 'Rédige un post-mortem d’une rupture majeure en utilisant la méthode des 5 pourquoi' utilise :", options: ["Roleplay + technique d’analyse", "Zero-shot", "Few-shot long", "Negative prompting"], r: 0, explication: "On assigne un rôle (rédacteur) et on spécifie une méthode." },
+      { q: "Le stock de sécurité peut être dimensionné par simulation de Monte-Carlo :", options: ["Vrai, pour modéliser les incertitudes complexes", "Faux, uniquement des formules analytiques", "Rarement utile", "Trop complexe"], r: 0, explication: "La simulation permet de capturer des distributions non normales et des corrélations." },
+      { q: "Dans un Pareto sur les coûts de transport, on peut identifier :", options: ["20% des trajets générant 80% des coûts", "Tous les trajets", "Le coût total", "Le nombre de camions"], r: 0, explication: "On priorise les axes à forte valeur." },
+      { q: "Le prompting 'chain-of-thought avec auto-vérification' demande à l’IA de :", options: ["Revoir sa réponse et se corriger si nécessaire", "Ne pas vérifier", "Donner une réponse brute", "Supprimer la réponse"], r: 0, explication: "L’auto-critique améliore la qualité." },
+      { q: "La méthode S&OP (Sales and Operations Planning) intègre :", options: ["Stocks, ventes, production, finance", "Seulement les stocks", "Seulement les ventes", "Uniquement la finance"], r: 0, explication: "Le S&OP aligne tous les plans." },
+      { q: "Pour un Pareto sur les causes de rupture avec données textuelles (commentaires), on peut :", options: ["Utiliser du NLP pour catégoriser et quantifier", "Lire manuellement chaque commentaire", "Ignorer les textes", "Trier par longueur"], r: 0, explication: "Le traitement automatique du langage extrait les thèmes récurrents." },
+      { q: "Le prompt 'Traite ce fichier CSV et applique un Pareto pondéré par le coût de rupture' est un prompt de :", options: ["Data analysis avec spécification", "Conversation simple", "Roleplay", "Meta-prompt"], r: 0, explication: "On donne une tâche précise sur des données." },
+      { q: "La méthode de gestion des stocks en cross-docking (transit direct) élimine :", options: ["Le stockage intermédiaire", "Le transport", "La commande", "Les fournisseurs"], r: 0, explication: "Les marchandises sont transférées directement de la réception à l'expédition." },
+      { q: "Le prompt 'Génère un plan d’action pour réduire le stock dormant basé sur un Pareto des références invendues' combine :", options: ["Analyse et recommandation", "Seulement une liste", "Un calcul", "Un dessin"], r: 0, explication: "On attend une analyse suivie de préconisations opérationnelles." },
+      { q: "Le coût total de gestion (CTG) d’un stock avec plusieurs produits interdépendants nécessite :", options: ["Une optimisation multi-produits (contrainte de capacité)", "Des modèles indépendants", "Une simple addition", "Un Pareto séparé par produit"], r: 0, explication: "Quand les produits partagent des ressources, l’optimisation est globale." }
+    ]
+  },
+  {
+    id: 'q7',
+    formationId: 'good-deal',
+    titre: 'Master Challenge Good Deal : Intégration stocks, Pareto, prompt engineering de haut niveau',
+    niveau: 'Expert N1',
+    niveauClass: 'lvl-6',
+    num: 7,
+    description: 'Synthèse complète : gestion des stocks avancée, Pareto décisionnel, architecture de prompts complexes, cas pratique intégré.',
+    questions: [
+      { q: "Vous devez concevoir un système de réapprovisionnement pour des pièces détachées à demande sporadique. Quelle approche ?", options: ["Modèle de Croston + stock de sécurité basé sur l’intervalle moyen", "Modèle de Wilson standard", "Juste à temps", "FIFO simple"], r: 0, explication: "Croston est adapté aux demandes intermittentes, couplé à une gestion de seuil." },
+      { q: "Pour un dashboard de pilotage de stock multicritère (valeur, délai, criticité), quel outil visuel combineriez-vous avec le Pareto ?", options: ["Heatmap + Pareto pondéré", "Camembert", "Histogramme simple", "Nuage de points"], r: 0, explication: "Une heatmap peut montrer la criticité, et un Pareto pondéré intègre plusieurs dimensions." },
+      { q: "Concevez un prompt en trois étapes pour analyser une rupture : premièrement diagnostiquer, deuxièmement prioriser par Pareto, troisièmement proposer des actions. Que contient chaque étape ?", options: ["Étape1 : collecte données ; Étape2 : calcul % cumulés ; Étape3 : recommandations spécifiques", "Une seule question", "Seulement la troisième étape", "Sans structure"], r: 0, explication: "Le chaînage structuré donne un résultat opérationnel." },
+      { q: "Dans un environnement avec des contraintes de capacité d’entreposage, comment adapter le modèle de Wilson ?", options: ["Introduire une contrainte de volume maximal et optimiser sous contrainte (Lagrangien)", "Ignorer la capacité", "Diminuer la demande", "Augmenter le prix"], r: 0, explication: "On cherche la quantité économique sous plafond d’espace." },
+      { q: "Vous avez des données de vente avec tendance et saisonnalité. Quelle méthode de prévision utiliser avant d’appliquer un Pareto ?", options: ["Lissage exponentiel de Holt-Winters", "Moyenne mobile simple", "Naïve", "Régression linéaire seule"], r: 0, explication: "Holt-Winters capture tendance et saisonnalité." },
+      { q: "Le prompt suivant : 'Décompose la gestion des stocks en sous-problèmes (prévision, approvisionnement, sécurité) et pour chacun, génère un prompt spécialisé.' est un exemple de :", options: ["Méta-prompt de conception systémique", "Few-shot", "Roleplay", "Zero-shot"], r: 0, explication: "On demande une architecture de prompts modulaires." },
+      { q: "Pour un Pareto sur la criticité des pannes, comment pondérer fréquence et coût d’arrêt ?", options: ["Calculer un score = w1 × fréquence + w2 × coût (normalisés)", "Prendre le max", "Sommer les deux", "Multiplier"], r: 0, explication: "La pondération permet de prioriser selon les objectifs." },
+      { q: "Comment évaluer la robustesse d’une politique de stock face aux incertitudes ?", options: ["Simulation Monte-Carlo sur la demande et les délais", "Regarder la moyenne", "Prendre le pire cas", "Ignorer les incertitudes"], r: 0, explication: "La simulation donne une distribution des indicateurs de performance." },
+      { q: "Le prompt 'Écris une fonction Python qui lit un fichier Excel, calcule un Pareto et exporte un graphique' relève :", options: ["Prompt de génération de code avec spécifications", "Roleplay", "Few-shot", "Méta-prompt"], r: 0, explication: "On attend un code exécutable." },
+      { q: "Dans une chaîne logistique multi-échelons, le bullwhip effect (effet coup de fouet) peut être atténué en :", options: ["Partage d’information et réduction des délais", "Augmentant les stocks", "Rallongeant les délais", "Isolant les échelons"], r: 0, explication: "La transparence réduit les amplifications de variance." },
+      { q: "Concevez un assistant IA (via prompt) qui aide un gestionnaire de stock à interpréter un Pareto mensuel. Le prompt doit inclure :", options: ["Rôle (expert logistique), contexte (données en entrée), tâche (interpréter 80/20), format (bullets)", "Une seule question", "Aucune instruction", "Uniquement le rôle"], r: 0, explication: "Un prompt complet oriente l’IA vers une réponse utile." },
+      { q: "La méthode de classification FMR (Fast, Medium, Slow) est souvent combinée avec :", options: ["Pareto pour le dimensionnement des stocks", "La météo", "La couleur des produits", "Le nom des fournisseurs"], r: 0, explication: "Les articles lents nécessitent des politiques de stock différentes." },
+      { q: "Pour un projet d’amélioration, vous appliquez un Pareto sur les causes de surstock. Que faites-vous des causes représentant moins de 5% du cumul ?", options: ["On les regroupe en catégorie 'Autres' et on ne les traite pas en priorité", "On les traite en premier", "On les supprime", "On double leur poids"], r: 0, explication: "L’analyse se concentre sur la queue courte." },
+      { q: "Le prompt 'Utilise la technique du 'chain-of-thought' pour expliquer pourquoi le point de commande doit augmenter si le délai augmente' doit :", options: ["Montrer le raisonnement mathématique étape par étape", "Donner une réponse courte", "Citer une source", "Ignorer la formule"], r: 0, explication: "Chain-of-thought explicite la logique." },
+      { q: "Lorsque vous avez des milliers de références, comment construire un Pareto efficacement ?", options: ["Agréger les références par famille de produits", "Trier manuellement", "Prendre un échantillon", "Utiliser un outil BI avec tris et cumuls"], r: 0, explication: "Les familles réduisent la complexité et restent exploitables." },
+      { q: "Intégrez un méta-prompt qui génère un plan de réduction des coûts de stock à partir d’un fichier de données. Décrivez la structure.", options: ["1. Rôle : analyste ; 2. Données : colonnes ; 3. Tâche : calcul Pareto sur valeur + rotation ; 4. Format : tableau d’actions par classe ABC", "Une phrase", "Un seul mot", "Sans structure"], r: 0, explication: "Le méta-prompt doit être précis pour produire un plan utile." },
+      { q: "La gestion des stocks dans un contexte de forte inflation (monnaie locale dépréciée) nécessite de :", options: ["Réduire les stocks pour limiter l’exposition financière", "Augmenter les stocks massivement", "Ne pas changer", "Passer au troc"], r: 0, explication: "L’inflation érode la valeur monétaire, donc on minimise les stocks sauf spéculation." },
+      { q: "Quel prompt utiliseriez-vous pour que l’IA simule une négociation avec un fournisseur sur les délais ?", options: ["Joue le rôle d’un fournisseur délai, je suis l’acheteur. Utilise des arguments basés sur le Pareto des délais.", "Donne-moi un prix", "Ignore le délai", "Parle de météo"], r: 0, explication: "Roleplay avec contraintes issues du Pareto." },
+      { q: "La méthode de réapprovisionnement kanban est basée sur :", options: ["Un signal visuel (carte) déclenchant une commande", "Une quantité économique", "Une période fixe", "Un stock de sécurité"], r: 0, explication: "Kanban est un système pull simple et visuel." },
+      { q: "Pour conclure le challenge, quelle est selon vous la clé d’une gestion des stocks performante couplée au Pareto et à l’IA ?", options: ["Identifier les 20% vitaux, automatiser le suivi via des prompts bien conçus, et réviser régulièrement les seuils", "Tout automatiser sans analyse", "Suivre la majorité des références", "Ignorer les données"], r: 0, explication: "La synergie des trois piliers (Pareto pour prioriser, IA/prompts pour automatiser, révision continue) donne le meilleur résultat." }
+    ]
+  }
+];
+
+// Export si nécessaire (pour utilisation dans un script plus large)
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { QUIZZ_DATA };
+}
+
+const FORMES_DATA = [
+  { profil: "images/image3.jpeg", nom: "Ivanna Ngeutchou", role: "Participante", initiales: "IN", formations: ["Good Deal"], attestation: false },
+  { profil: "images/3.png", nom: "Bitolog Chris Emile", role: "Participant", initiales: "CE", formations: ["Good Deal"], attestation: false },
+  { profil: "images/3.png", nom: "Garga Ali Faysal", role: "Membre de DATAIKOS", initiales: "GA", formations: ["Good Deal"], attestation: false },
+  { profil: "images/3.png", nom: "Kpoumie Amza", role: "Membre de DATAIKOS", initiales: "JE", formations: ["Good Deal"], attestation: false },
+  { profil: "images/3.png", nom: "Fatima Diallo", role: "Participante", initiales: "FD", formations: ["Good Deal"], attestation: false },
+  { profil: "images/3.png", nom: "Emmanuel Kotto", role: "Participant", initiales: "EK", formations: ["Good Deal"], attestation: false }
+];
+
+const FORMATEURS_DATA = [
+  { profil: "images/1.jpg", nom: "AAT NDONGO David Meilleur", role: "Fondateur & Lead Instructor", initiales: "AN", type: "Membre DATAIKOS", formations: ["Good Deal"], bio: "Fondateur de DATAIKOS, Polytechnicien AI & Data Science" },
+  { profil: "images/13.jpeg", nom: "KWARISSA LADA Lyda", role: "Formatrice Excel", initiales: "KL", type: "Membre DATAIKOS", formations: ["Good Deal"], bio: "Polytechnicien AI & Data Science" },
+  { profil: "images/image2.jpeg", nom: "MBONJO ETIA Patrick Thomas", role: "Formateur Excel", initiales: "ME", type: "Membre DATAIKOS", formations: ["Good Deal"], bio: "Polytechnicien AI & Data Science" }
+];
+// ============================================================
+// APP STATE
+// ============================================================
+let currentQuiz = null;
+let currentQuestion = 0;
+let selectedAnswer = null;
+let answers = [];
+let score = 0;
+let answered = false;
+
+// ============================================================
+// NAVIGATION
+// ============================================================
+function showPage(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('[data-page]').forEach(a => a.classList.remove('active'));
+  document.getElementById('page-' + page).classList.add('active');
+  const link = document.querySelector(`[data-page="${page}"]`);
+  if (link) link.classList.add('active');
+  if (page === 'formation') { showFormationList(); }
+  if (page === 'quizz') { renderQuizzGrid(); }
+  if (page === 'laureats') { renderLaureats(); }
+  document.getElementById('navLinks').classList.remove('open');
+  window.scrollTo(0, 0);
+}
+
+function toggleNav() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+
+function setTheme(theme, btn) {
+  document.body.setAttribute('data-theme', theme);
+  document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+// ============================================================
+// FORMATION
+// ============================================================
+function showFormationList() {
+  document.getElementById('formations-list').style.display = 'block';
+  document.getElementById('formation-good-deal').classList.remove('visible');
+}
+
+function showFormation(id) {
+  document.getElementById('formations-list').style.display = 'none';
+  const el = document.getElementById('formation-' + id);
+  el.classList.add('visible');
+  renderFormationQuizz();
+  window.scrollTo(0, 0);
+}
+
+function showFormationList() {
+  document.getElementById('formations-list').style.display = 'block';
+  document.querySelectorAll('.formation-detail').forEach(d => d.classList.remove('visible'));
+}
+
+function renderFormationQuizz() {
+  const container = document.getElementById('formation-quizz-list');
+  if (!container) return;
+  const html = QUIZZ_DATA.map(q => `
+    <div class="quizz-mini-card" onclick="openQuiz('${q.id}')">
+      <div class="quizz-mini-left">
+        <h5>Quizz ${q.num} - ${q.titre}</h5>
+        <span>${q.questions.length} questions</span>
+      </div>
+      <span class="level-badge ${q.niveauClass}">${q.niveau}</span>
+    </div>
+  `).join('');
+  container.innerHTML = html;
+}
+
+// ============================================================
+// QUIZZ GRID
+// ============================================================
+function renderQuizzGrid() {
+  const container = document.getElementById('quizz-grid');
+  if (!container) return;
+  container.innerHTML = QUIZZ_DATA.map(q => `
+    <div class="quizz-card" onclick="openQuiz('${q.id}')">
+      <div class="quizz-card-header">
+        <div class="quizz-num">GOOD DEAL - Q${q.num}/7</div>
+        <span class="level-badge ${q.niveauClass}">${q.niveau}</span>
+      </div>
+      <h3>${q.titre}</h3>
+      <p>${q.description}</p>
+      <div class="quizz-card-footer">
+        <span> ${q.questions.length} questions</span>
+        <button class="start-btn">Commencer →</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ============================================================
+// QUIZ ENGINE
+// ============================================================
+function openQuiz(quizId) {
+  currentQuiz = QUIZZ_DATA.find(q => q.id === quizId);
+  currentQuestion = 0;
+  answers = [];
+  score = 0;
+  answered = false;
+  document.getElementById('quizTitle').textContent = currentQuiz.titre;
+  document.getElementById('quizLevel').textContent = 'Niveau : ' + currentQuiz.niveau;
+  document.getElementById('quizOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  renderQuestion();
+}
+
+function closeQuiz() {
+  document.getElementById('quizOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+  currentQuiz = null;
+}
+
+function renderQuestion() {
+  const q = currentQuiz.questions[currentQuestion];
+  const total = currentQuiz.questions.length;
+  const pct = (currentQuestion / total) * 100;
+  document.getElementById('progressFill').style.width = pct + '%';
+  answered = false;
+  selectedAnswer = null;
+
+  const optLabels = ['A', 'B', 'C', 'D'];
+  const html = `
+    <div class="question-num">Question ${currentQuestion + 1} sur ${total}</div>
+    <div class="question-text">${q.q}</div>
+    <div class="options-grid">
+      ${q.options.map((opt, i) => `
+        <button class="option-btn" onclick="selectAnswer(${i})" id="opt-${i}">
+          <span class="option-label">${optLabels[i]}</span>
+          ${opt}
+        </button>
+      `).join('')}
+    </div>
+    <div class="quiz-feedback" id="quizFeedback"></div>
+    <div class="quiz-nav">
+      <span style="font-size:13px;color:var(--text-faint);">Score : ${score}/${currentQuestion}</span>
+      <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" style="display:none;">
+        ${currentQuestion + 1 < total ? 'Question suivante →' : 'Voir mes résultats →'}
+      </button>
+    </div>
+  `;
+  document.getElementById('quizContent').innerHTML = html;
+}
+
+function selectAnswer(idx) {
+  if (answered) return;
+  answered = true;
+  selectedAnswer = idx;
+  const q = currentQuiz.questions[currentQuestion];
+  const isCorrect = idx === q.r;
+  if (isCorrect) score++;
+
+  document.querySelectorAll('.option-btn').forEach((btn, i) => {
+    if (i === q.r) btn.classList.add('correct');
+    else if (i === idx && !isCorrect) btn.classList.add('wrong');
+  });
+
+  const fb = document.getElementById('quizFeedback');
+  fb.className = 'quiz-feedback show ' + (isCorrect ? 'correct-fb' : 'wrong-fb');
+  fb.innerHTML = (isCorrect ? 'Correct ! ' : 'Incorrect. ') + q.explication;
+
+  document.getElementById('nextBtn').style.display = 'inline-flex';
+  answers.push({ question: q.q, chosen: idx, correct: q.r, isCorrect, options: q.options });
+}
+
+function nextQuestion() {
+  currentQuestion++;
+  if (currentQuestion >= currentQuiz.questions.length) {
+    showResults();
+  } else {
+    renderQuestion();
+  }
+}
+
+function showResults() {
+  const total = currentQuiz.questions.length;
+  const pct = Math.round((score / total) * 100);
+  document.getElementById('progressFill').style.width = '100%';
+
+  let mention = '';
+  if (pct >= 90) mention = '🏆 Excellent ! Niveau validé.';
+  else if (pct >= 70) mention = 'Bien joué ! Encore un effort.';
+  else if (pct >= 50) mention = 'En progrès - relisez le cours !';
+  else mention = 'Continuez à vous former !';
+
+  const reviewHtml = answers.map((a, i) => `
+    <div class="review-item ${a.isCorrect ? 'correct-r' : 'wrong-r'}">
+      <div class="review-q">${i + 1}. ${a.question}</div>
+      <div class="review-a">
+        ${a.isCorrect
+          ? `<span class="correct-ans"> ${a.options[a.correct]}</span>`
+          : `<span class="your">Votre réponse : ${a.options[a.chosen]}</span><br><span class="correct-ans"> Bonne réponse : ${a.options[a.correct]}</span>`
+        }
+      </div>
+    </div>
+  `).join('');
+
+  const circumference = 2 * Math.PI * 54;
+  const offset = circumference - (pct / 100) * circumference;
+
+  document.getElementById('quizContent').innerHTML = `
+    <div class="results-screen">
+      <div class="score-circle">
+        <svg viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="54" fill="none" stroke="var(--border)" stroke-width="8"/>
+          <circle cx="60" cy="60" r="54" fill="none" stroke="var(--accent)" stroke-width="8"
+            stroke-dasharray="${circumference}" stroke-dashoffset="${offset}"
+            stroke-linecap="round" transform="rotate(-90 60 60)"
+            style="transition:stroke-dashoffset 1s ease;"/>
+        </svg>
+        <div class="score-circle-num">${pct}%</div>
+        <div class="score-circle-label">${score}/${total}</div>
+      </div>
+      <div class="results-title">${mention}</div>
+      <div class="results-sub">Vous avez répondu correctement à ${score} question(s) sur ${total}.</div>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem;">
+        <button class="btn btn-primary" onclick="openQuiz('${currentQuiz.id}')">Recommencer →</button>
+        <button class="btn btn-outline" onclick="closeQuiz()">Fermer</button>
+      </div>
+      <div class="answers-review">
+        <h4 style="margin-bottom:1rem;font-size:1rem;font-weight:700;">Révision des réponses</h4>
+        ${reviewHtml}
+      </div>
+    </div>
+  `;
+}
+
+// ============================================================
+// LAUREATS
+// ============================================================
+function renderLaureats() {
+  renderFormes();
+  renderFormateurs();
+}
+function renderFormes() {
+  const container = document.getElementById('formes-grid');
+  if (!container) return;
+  container.innerHTML = FORMES_DATA.map(p => `
+    <div class="person-card">
+      <div class="person-avatar">
+        <img src="${p.profil}" alt="${p.nom}" onerror="this.style.display='none';">
+        <div class="person-initials">${p.initiales}</div>
+      </div>
+      <div class="person-body">
+        <div class="person-name">${p.nom}</div>
+        <div class="person-role">${p.role}</div>
+        ${p.attestation ? '<div style="font-size:11px;color:var(--accent);font-weight:600;margin-bottom:8px;">Attestation obtenue</div>' : '<div style="font-size:11px;color:var(--text-faint);margin-bottom:8px;">En cours…</div>'}
+        <div class="person-formations">
+          <div style="font-size:11px;color:var(--text-faint);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.06em;">Formations</div>
+          ${p.formations.map(f => `<span class="f-tag">${f}</span>`).join('')}
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderFormateurs() {
+  const container = document.getElementById('formateurs-grid');
+  if (!container) return;
+  container.innerHTML = FORMATEURS_DATA.map(p => `
+    <div class="person-card">
+      <div class="person-avatar">
+        <img src="${p.profil || ''}" alt="${p.nom}" onerror="this.style.display='none';">
+        <div class="person-initials">${p.initiales}</div>
+      </div>
+      <div class="person-body">
+        <div class="person-name">${p.nom}</div>
+        <div class="person-role">${p.role}</div>
+        <div class="person-badge ${p.type.includes('Membre') ? 'badge-member' : 'badge-partner'}">${p.type}</div>
+        <div style="font-size:12px;color:var(--text-muted);margin-bottom:8px;">${p.bio}</div>
+        <div class="person-formations">
+          <div style="font-size:11px;color:var(--text-faint);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.06em;">Formations animées</div>
+          ${p.formations.map(f => `<span class="f-tag">${f}</span>`).join('')}
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+function switchLaureatTab(tab) {
+  document.querySelectorAll('.laureat-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.laureat-section').forEach(s => s.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('tab-' + tab).classList.add('active');
+}
+
+// ============================================================
+// INIT
+// ============================================================
+renderQuizzGrid();
+renderFormationQuizz();
+renderLaureats();
+</script>
+</body>
+</html>
