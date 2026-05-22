@@ -1,6 +1,6 @@
 // api/track.js — Vercel Serverless Function
 // Enregistre le score d'un participant dans Upstash Redis
-// Variables : UPSTASH_REDIS_KV_REST_API_URL, UPSTASH_REDIS_KV_REST_API_TOKEN
+// Variables : UPSTASH_REDIS_KV_KV_REST_API_URL, UPSTASH_REDIS_KV_KV_REST_API_TOKEN
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -18,17 +18,24 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Données manquantes' });
   }
 
-  const URL   = process.env.UPSTASH_REDIS_KV_REST_API_URL;
-  const TOKEN = process.env.UPSTASH_REDIS_KV_REST_API_TOKEN;
+  // ✅ Correction : utiliser les vrais noms de variables Vercel (préfixe KV_KV_)
+  const URL   = process.env.UPSTASH_REDIS_KV_KV_REST_API_URL;
+  const TOKEN = process.env.UPSTASH_REDIS_KV_KV_REST_API_TOKEN;
 
   if (!URL || !TOKEN) {
-    return res.status(500).json({ error: 'Upstash non configuré', vars: {
-      url: !!process.env.UPSTASH_REDIS_KV_REST_API_URL,
-      token: !!process.env.UPSTASH_REDIS_KV_REST_API_TOKEN
-    }});
+    return res.status(500).json({
+      error: 'Upstash non configuré',
+      vars: {
+        url:   !!process.env.UPSTASH_REDIS_KV_KV_REST_API_URL,
+        token: !!process.env.UPSTASH_REDIS_KV_KV_REST_API_TOKEN
+      }
+    });
   }
 
-  const headers = { Authorization: `Bearer ${TOKEN}`, 'Content-Type': 'application/json' };
+  const headers = {
+    Authorization: `Bearer ${TOKEN}`,
+    'Content-Type': 'application/json'
+  };
 
   // GET une clé
   const redisGet = async (key) => {
@@ -48,13 +55,6 @@ export default async function handler(req, res) {
   // INCR un compteur
   const redisIncr = async (key) => {
     await fetch(`${URL}/incr/${encodeURIComponent(key)}`, { method: 'POST', headers });
-  };
-
-  // GET un entier
-  const redisGetInt = async (key) => {
-    const r = await fetch(`${URL}/get/${encodeURIComponent(key)}`, { headers });
-    const d = await r.json();
-    return parseInt(d.result || '0');
   };
 
   try {
