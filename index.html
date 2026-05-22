@@ -666,7 +666,7 @@ footer {
 }
 @media(max-width: 768px) {
   .mobile-nav-toggle { display: block; }
-  .nav-links { 
+  .nav-links {
     display: none; position: fixed; top: 64px; left: 0; right: 0;
     background: var(--nav-bg); backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
@@ -940,23 +940,23 @@ footer {
         <div class="info-card">
           <h4>À propos de cette formation</h4>
           <p style="font-size:14px;color:var(--text-muted);line-height:1.8;">
-            <strong>Good Deal</strong> est l’une des premières formations de DATAIKOS, un programme concret de 10 jours pour maîtriser la gestion des stocks, la prise de décision avec Pareto et l’art d’interroger l’IA (prompt engineering).
+            <strong>Good Deal</strong> est l'une des premières formations de DATAIKOS, un programme concret de 10 jours pour maîtriser la gestion des stocks, la prise de décision avec Pareto et l'art d'interroger l'IA (prompt engineering).
           </p>
           <p style="font-size:14px;color:var(--text-muted);line-height:1.8;margin-top:1rem;">
-            Des cas pratiques de gestion des stocks, des simulations d’aide à la décision avec le diagramme de Pareto, et des analyses concrètes de requêtes en prompt engineering permettent aux participants de développer une expertise solide, progressive, du niveau néophyte jusqu’à Expert N1.
+            Des cas pratiques de gestion des stocks, des simulations d'aide à la décision avec le diagramme de Pareto, et des analyses concrètes de requêtes en prompt engineering permettent aux participants de développer une expertise solide, progressive, du niveau néophyte jusqu'à Expert N1.
           </p>
         </div>
         <div class="info-card">
           <h4>Objectifs pédagogiques</h4>
-             <ul style="font-size:14px;color:var(--text-muted);line-height:2;padding-left:1.5rem;">
-                <li>Comprendre et calculer les indicateurs clés de gestion des stocks (rotation, stock de sécurité, taux de rupture)</li>
-                <li>Appliquer le diagramme de Pareto (80/20) pour identifier les causes prioritaires dans l’analyse de données</li>
-                <li>Formuler des prompts efficaces pour interroger une IA générative et automatiser des tâches décisionnelles</li>
-                <li>Construire un tableau de bord interactif sous Excel à partir de données opérationnelles</li>
-                <li>Interpréter les résultats d’une analyse Pareto pour prendre des décisions stratégiques en entreprise</li>
-                <li>Utiliser l’IA comme assistant dans la gestion des stocks et la génération de rapports</li>
-                <li>Atteindre le niveau Expert N1 en maîtrise des outils d’aide à la décision (Pareto, Excel, prompt engineering)</li>
-             </ul>
+          <ul style="font-size:14px;color:var(--text-muted);line-height:2;padding-left:1.5rem;">
+            <li>Comprendre et calculer les indicateurs clés de gestion des stocks (rotation, stock de sécurité, taux de rupture)</li>
+            <li>Appliquer le diagramme de Pareto (80/20) pour identifier les causes prioritaires dans l'analyse de données</li>
+            <li>Formuler des prompts efficaces pour interroger une IA générative et automatiser des tâches décisionnelles</li>
+            <li>Construire un tableau de bord interactif sous Excel à partir de données opérationnelles</li>
+            <li>Interpréter les résultats d'une analyse Pareto pour prendre des décisions stratégiques en entreprise</li>
+            <li>Utiliser l'IA comme assistant dans la gestion des stocks et la génération de rapports</li>
+            <li>Atteindre le niveau Expert N1 en maîtrise des outils d'aide à la décision (Pareto, Excel, prompt engineering)</li>
+          </ul>
         </div>
       </div>
       <div class="detail-sidebar">
@@ -1058,23 +1058,9 @@ footer {
 </footer>
 
 <script>
-// ============================================================
-// DATA
-// ============================================================
-// QUIZZ_DATA pour la formation Good Deal DATAIKOS
-// Thèmes : Gestion des stocks, Diagramme de Pareto (80/20), Prompt Engineering
-// 7 quiz, 20 questions chacun, niveau Néophyte → Expert N1
-// Chaque quiz couvre les trois thèmes avec difficulté progressive
-// ============================================================
-
 const QUIZZ_DATA = [
   {
-    id: 'q1',
-    formationId: 'good-deal',
-    titre: 'Bases des stocks, Pareto et prompt',
-    niveau: 'Néophyte',
-    niveauClass: 'lvl-0',
-    num: 1,
+    id: 'q1', formationId: 'good-deal', titre: 'Bases des stocks, Pareto et prompt', niveau: 'Néophyte', niveauClass: 'lvl-0', num: 1,
     description: 'Les bases absolues : vocabulaire des stocks, principe 80/20, premier contact avec les prompts.',
     questions: [
       { q: "Qu'est-ce que le stock de sécurité ?", options: ["Le stock maximum autorisé", "Le stock minimum pour éviter une rupture", "Le stock vendu chaque mois", "Le stock commandé mais non livré"], r: 1, explication: "Le stock de sécurité est une quantité supplémentaire maintenue pour faire face aux aléas (retards, pics de demande)." },
@@ -1100,13 +1086,8 @@ const QUIZZ_DATA = [
     ]
   },
   {
-    id: 'q2',
-    formationId: 'good-deal',
-    titre: 'Approfondissement : calculs, Pareto et prompts intermédiaires',
-    niveau: 'Débutant',
-    niveauClass: 'lvl-1',
-    num: 2,
-    description: 'Calculs de stocks, construction d’un diagramme de Pareto, techniques de prompt (roleplay, few-shot).',
+    id: 'q2', formationId: 'good-deal', titre: 'Approfondissement : calculs, Pareto et prompts intermédiaires', niveau: 'Débutant', niveauClass: 'lvl-1', num: 2,
+    description: 'Calculs de stocks, construction d\'un diagramme de Pareto, techniques de prompt (roleplay, few-shot).',
     questions: [
       { q: "La formule du stock moyen est :", options: ["(Stock initial + Stock final) / 2", "Stock final - Stock initial", "Stock initial × Stock final", "Stock initial + Stock final"], r: 0, explication: "Le stock moyen se calcule généralement par la moyenne du stock en début et fin de période." },
       { q: "Dans un diagramme de Pareto, à partir de quel % cumulé considère-t-on généralement les causes 'vitales' ?", options: ["50%", "80%", "95%", "100%"], r: 1, explication: "Les causes représentant environ 80% des effets sont dites vitales (20% des causes)." },
@@ -1115,33 +1096,28 @@ const QUIZZ_DATA = [
       { q: "Pour créer un diagramme de Pareto sous Excel, on a besoin de :", options: ["Colonnes : causes, valeurs, % individuel, % cumulé", "Un seul tableau de valeurs", "Un graphique en secteurs", "Une macro VBA"], r: 0, explication: "Les colonnes indispensables sont : catégories, effectifs ou coûts, pourcentage individuel et pourcentage cumulé." },
       { q: "Un prompt 'Tu es un expert logistique...' utilise la technique :", options: ["Few-shot", "Roleplay (persona)", "Zero-shot", "Negative"], r: 1, explication: "On assigne un rôle à l'IA pour adapter son style et son contenu." },
       { q: "Le coût de possession du stock comprend généralement :", options: ["Coût d'achat uniquement", "Coût de stockage, assurance, immobilisation financière", "Coût de transport", "Coût de rupture"], r: 1, explication: "Le coût de possession inclut le loyer, l'assurance, la détérioration et le coût du capital immobilisé." },
-      { q: "Comment calculer le pourcentage individuel d’une cause dans un Pareto ?", options: ["(Valeur de la cause / Somme totale) × 100", "(Somme totale / Valeur de la cause) × 100", "Valeur de la cause / 100", "Valeur de la cause - Moyenne"], r: 0, explication: "Le % individuel = (valeur de la catégorie / somme de toutes les valeurs) × 100." },
+      { q: "Comment calculer le pourcentage individuel d'une cause dans un Pareto ?", options: ["(Valeur de la cause / Somme totale) × 100", "(Somme totale / Valeur de la cause) × 100", "Valeur de la cause / 100", "Valeur de la cause - Moyenne"], r: 0, explication: "Le % individuel = (valeur de la catégorie / somme de toutes les valeurs) × 100." },
       { q: "Le prompt 'Voici un exemple : \"Pompe : critique\". Maintenant classifie : Moteur' est un exemple de :", options: ["Zero-shot", "Few-shot (un seul exemple)", "Roleplay", "Chaînage"], r: 1, explication: "On donne un exemple (few-shot) pour guider le format de la réponse." },
-      { q: "La formule Excel =RECHERCHEV(E2; A2:B100; 2; FAUX) permet de :", options: ["Additionner des ventes", "Trouver la valeur correspondant à une clé dans un tableau", "Créer un graphique", "Filtrer des données"], r: 1, explication: "RECHERCHEV cherche une valeur dans la première colonne d’un tableau et renvoie une valeur d’une autre colonne." },
+      { q: "La formule Excel =RECHERCHEV(E2; A2:B100; 2; FAUX) permet de :", options: ["Additionner des ventes", "Trouver la valeur correspondant à une clé dans un tableau", "Créer un graphique", "Filtrer des données"], r: 1, explication: "RECHERCHEV cherche une valeur dans la première colonne d'un tableau et renvoie une valeur d'une autre colonne." },
       { q: "Le point de commande (reorder point) se calcule par :", options: ["Demande moyenne × Délai de réapprovisionnement + Stock de sécurité", "Stock initial / Délai", "Demande totale / Nombre de références", "Stock minimum × 2"], r: 0, explication: "Point de commande = (consommation moyenne par jour × délai) + stock de sécurité." },
-      { q: "Dans un prompt, le 'meta-prompting' consiste à :", options: ["Demander à l’IA de créer un autre prompt", "Utiliser des métaphores", "Ajouter des données météo", "Donner une consigne très courte"], r: 0, explication: "Un méta-prompt est une instruction qui sert à générer ou améliorer d’autres prompts." },
+      { q: "Dans un prompt, le 'meta-prompting' consiste à :", options: ["Demander à l'IA de créer un autre prompt", "Utiliser des métaphores", "Ajouter des données météo", "Donner une consigne très courte"], r: 0, explication: "Un méta-prompt est une instruction qui sert à générer ou améliorer d'autres prompts." },
       { q: "Le taux de service (niveau de service) en stock correspond à :", options: ["Probabilité de ne pas être en rupture", "Valeur du stock en €", "Nombre de commandes par mois", "Taux de rotation"], r: 0, explication: "Le niveau de service est la probabilité que la demande soit satisfaite sans rupture." },
-      { q: "Pour interpréter un Pareto, on regarde :", options: ["La pente initiale de la courbe cumulée", "La hauteur des barres", "Le nombre de catégories", "La couleur du graphique"], r: 0, explication: "Une pente raide au début indique que quelques causes concentrent l’essentiel de l’effet." },
+      { q: "Pour interpréter un Pareto, on regarde :", options: ["La pente initiale de la courbe cumulée", "La hauteur des barres", "Le nombre de catégories", "La couleur du graphique"], r: 0, explication: "Une pente raide au début indique que quelques causes concentrent l'essentiel de l'effet." },
       { q: "Le prompt 'Décompose ce problème étape par étape' relève du :", options: ["Chain-of-thought prompting", "Zero-shot", "Negative prompting", "Roleplay"], r: 0, explication: "Chain-of-thought incite l'IA à montrer son raisonnement intermédiaire." },
       { q: "Le stock d'écrêtement (ou stock tampon) sert à :", options: ["Lisser les variations de la demande", "Augmenter les coûts", "Remplacer le stock de sécurité", "Diminuer la rotation"], r: 0, explication: "Le stock tampon absorbe les pics de demande non prévus." },
       { q: "Dans un Pareto, la courbe des % cumulés est tracée sur :", options: ["Axe des ordonnées secondaire", "Axe des abscisses", "Même axe que les barres", "Aucun axe"], r: 0, explication: "On utilise généralement un axe secondaire à droite pour les pourcentages cumulés (0-100%)." },
       { q: "Le prompt 'Ignorer les opinions non factuelles' est une technique dite :", options: ["Negative prompting", "Positive prompting", "Roleplay", "Few-shot"], r: 0, explication: "Negative prompting indique ce qu'il ne faut pas faire." },
       { q: "La méthode ABC de gestion des stocks classe les articles en :", options: ["A (très important), B (important), C (peu important)", "Par ordre alphabétique", "Par couleur", "Par date d'achat"], r: 0, explication: "La méthode ABC est dérivée du principe de Pareto : A = 80% de valeur, B=15%, C=5%." },
-      { q: "Pour qu’un prompt soit efficace, il faut :", options: ["Un contexte clair, une instruction précise, un format attendu", "Le moins de mots possible", "Des majuscules et des points d'exclamation", "Une question fermée"], r: 0, explication: "Un bon prompt combine contexte, tâche, contraintes et format." }
+      { q: "Pour qu'un prompt soit efficace, il faut :", options: ["Un contexte clair, une instruction précise, un format attendu", "Le moins de mots possible", "Des majuscules et des points d'exclamation", "Une question fermée"], r: 0, explication: "Un bon prompt combine contexte, tâche, contraintes et format." }
     ]
   },
   {
-    id: 'q3',
-    formationId: 'good-deal',
-    titre: 'Maîtrise opérationnelle : stocks avancés, Pareto, prompts complexes',
-    niveau: 'Intermédiaire',
-    niveauClass: 'lvl-2',
-    num: 3,
+    id: 'q3', formationId: 'good-deal', titre: 'Maîtrise opérationnelle : stocks avancés, Pareto, prompts complexes', niveau: 'Intermédiaire', niveauClass: 'lvl-2', num: 3,
     description: 'Modèles de réapprovisionnement, Pareto multicritère, techniques de prompt comme le chaînage et le méta-prompt.',
     questions: [
       { q: "Le modèle de Wilson (EOQ) détermine :", options: ["La quantité économique de commande", "Le point de commande", "Le stock de sécurité", "Le coût de rupture"], r: 0, explication: "L'EOQ (Economic Order Quantity) minimise le coût total de gestion des stocks (passation + possession)." },
       { q: "Dans un diagramme de Pareto avec plusieurs critères (coût, fréquence), on peut :", options: ["Utiliser une pondération ou une analyse multicritère", "Additionner les critères bruts", "Prendre le maximum", "Ignorer les autres critères"], r: 0, explication: "On peut attribuer des poids pour combiner plusieurs dimensions." },
-      { q: "Le 'meta-prompt' suivant : 'Crée un prompt pour analyser des ruptures de stock' est un exemple de :", options: ["Prompt auto-référent", "Roleplay", "Few-shot", "Zero-shot"], r: 0, explication: "Un méta-prompt demande à l’IA de générer un autre prompt." },
+      { q: "Le 'meta-prompt' suivant : 'Crée un prompt pour analyser des ruptures de stock' est un exemple de :", options: ["Prompt auto-référent", "Roleplay", "Few-shot", "Zero-shot"], r: 0, explication: "Un méta-prompt demande à l'IA de générer un autre prompt." },
       { q: "Formule du coût total de possession d'un stock :", options: ["(Quantité commandée / 2) × Coût unitaire de possession", "Quantité × Coût d'achat", "Stock moyen × Prix", "Rupture × Pénalité"], r: 0, explication: "Le coût de possession annuel = stock moyen × coût de possession unitaire." },
       { q: "Pour réaliser un Pareto dynamique sous Excel (actualisé automatiquement), on utilise :", options: ["Tableau croisé dynamique + graphique croisé", "Filtres manuels", "Macros obligatoires", "Graphique en aires"], r: 0, explication: "Un TCD avec mise à jour automatique des données permet un Pareto interactif." },
       { q: "Technique avancée de prompt : le 'tree-of-thoughts' permet :", options: ["Explorer plusieurs chemins de raisonnement en parallèle", "Ne donner qu'une seule réponse", "Générer des images", "Traduire en plusieurs langues"], r: 0, explication: "Tree-of-thoughts explore différentes branches de réflexion avant de conclure." },
@@ -1162,13 +1138,8 @@ const QUIZZ_DATA = [
     ]
   },
   {
-    id: 'q4',
-    formationId: 'good-deal',
-    titre: 'Optimisation avancée : modèles stochastiques, Pareto multicritère, prompt engineering expert',
-    niveau: 'Intermédiaire+',
-    niveauClass: 'lvl-3',
-    num: 4,
-    description: 'Gestion des stocks sous incertitude, Pareto avec pondération, prompt engineering avancé (contrôle des biais, arbres de décision).',
+    id: 'q4', formationId: 'good-deal', titre: 'Optimisation avancée : modèles stochastiques, Pareto multicritère, prompt engineering expert', niveau: 'Intermédiaire+', niveauClass: 'lvl-3', num: 4,
+    description: 'Gestion des stocks sous incertitude, Pareto avec pondération, prompt engineering avancé.',
     questions: [
       { q: "Le modèle de réapprovisionnement à période fixe (P-model) se caractérise par :", options: ["Des commandes à intervalles réguliers, quantités variables", "Des quantités fixes, intervalles variables", "Un stock zéro", "Un seul fournisseur"], r: 0, explication: "Dans le modèle à période fixe, on commande tous les T jours la quantité nécessaire pour remonter au stock cible." },
       { q: "Pour pondérer plusieurs critères dans un Pareto (ex. coût et délai), on peut :", options: ["Normaliser chaque critère et appliquer une somme pondérée", "Faire deux graphiques séparés", "Prendre le critère le plus important", "Ignorer les autres"], r: 0, explication: "La normalisation puis la combinaison linéaire permet un Pareto multicritère." },
@@ -1193,13 +1164,8 @@ const QUIZZ_DATA = [
     ]
   },
   {
-    id: 'q5',
-    formationId: 'good-deal',
-    titre: 'Stocks avancés, Pareto stratégique, prompt engineering pour l’analyse',
-    niveau: 'Avancé',
-    niveauClass: 'lvl-4',
-    num: 5,
-    description: 'Modèles stochastiques, courbes ABC, Pareto avec arbres de décision, prompts pour l’analyse de données.',
+    id: 'q5', formationId: 'good-deal', titre: 'Stocks avancés, Pareto stratégique, prompt engineering pour l\'analyse', niveau: 'Avancé', niveauClass: 'lvl-4', num: 5,
+    description: 'Modèles stochastiques, courbes ABC, Pareto avec arbres de décision, prompts pour l\'analyse de données.',
     questions: [
       { q: "Le modèle (s, S) de gestion de stock signifie :", options: ["Commander jusqu'au niveau S quand le stock descend sous s", "Commander une quantité fixe Q", "Réapprovisionnement périodique", "Stock zéro"], r: 0, explication: "Le seuil s déclenche une commande pour remonter au niveau cible S." },
       { q: "Un arbre de décision pour appliquer Pareto peut aider à :", options: ["Choisir entre plusieurs actions selon les probabilités d'impact", "Dessiner un histogramme", "Calculer des moyennes", "Faire des prévisions de vente"], r: 0, explication: "L'arbre de décision intègre les incertitudes et les gains pour prioriser." },
@@ -1208,7 +1174,7 @@ const QUIZZ_DATA = [
       { q: "La courbe ABC peut être combinée avec un Pareto pour :", options: ["Visualiser la contribution cumulée des classes", "Ignorer les classes C", "Remplacer le diagramme en barres", "Supprimer les classes A"], r: 0, explication: "On trace la courbe des % cumulés et on délimite les classes A, B, C." },
       { q: "Le prompting 'self-consistency' consiste à :", options: ["Soumettre plusieurs fois la même question et prendre la réponse la plus fréquente", "Toujours répondre oui", "Ne jamais changer de réponse", "Poser des questions contradictoires"], r: 0, explication: "La self-consistency améliore la fiabilité des réponses du modèle." },
       { q: "Le coût de stockage unitaire annuel inclut généralement :", options: ["Loyer, assurance, dépréciation, coût du capital", "Coût d'achat", "Frais de transport", "Salaires des vendeurs"], r: 0, explication: "Ce sont les coûts directs liés à la détention du stock." },
-      { q: "Dans un arbre de Pareto décisionnel, on peut pondérer les branches par :", options: ["La probabilité d’occurrence et l’impact monétaire", "Le nombre d’occurrences", "La couleur des produits", "La date"], r: 0, explication: "On calcule une espérance de gain pour guider le choix." },
+      { q: "Dans un arbre de Pareto décisionnel, on peut pondérer les branches par :", options: ["La probabilité d'occurrence et l'impact monétaire", "Le nombre d'occurrences", "La couleur des produits", "La date"], r: 0, explication: "On calcule une espérance de gain pour guider le choix." },
       { q: "Le prompt 'Génère un rapport d'analyse ABC avec recommandations' doit préciser :", options: ["Les colonnes du fichier source, les seuils de classification, le format", "Uniquement le titre", "Aucune précision", "La date"], r: 0, explication: "Un prompt efficace pour générer un rapport structuré est détaillé." },
       { q: "Le modèle de réapprovisionnement continu (Q-model) se caractérise par :", options: ["Quantité fixe Q, point de commande s", "Période fixe", "Stock nul", "Commande aléatoire"], r: 0, explication: "On commande une quantité fixe Q chaque fois que le stock atteint le point s." },
       { q: "La technique de prompt 'ReAct' (Reasoning + Acting) combine :", options: ["Raisonnement et actions (requêtes externes)", "Seulement du raisonnement", "Seulement des actions", "Du hasard"], r: 0, explication: "ReAct alterne réflexion et appel à des outils (API, calculs) pour résoudre des tâches." },
@@ -1224,73 +1190,58 @@ const QUIZZ_DATA = [
     ]
   },
   {
-    id: 'q6',
-    formationId: 'good-deal',
-    titre: 'Optimisation multi-produits, Pareto avancé, prompt engineering pour l’automatisation',
-    niveau: 'Expert',
-    niveauClass: 'lvl-5',
-    num: 6,
+    id: 'q6', formationId: 'good-deal', titre: 'Optimisation multi-produits, Pareto avancé, prompt engineering pour l\'automatisation', niveau: 'Expert', niveauClass: 'lvl-5', num: 6,
     description: 'Gestion de stocks multi-produits, Pareto sur données massives, pipelines de prompts, IA pour la logistique.',
     questions: [
       { q: "La méthode de classification XYZ (basée sur la variabilité) croisée avec ABC donne :", options: ["Des classes comme AX (forte valeur, faible variabilité)", "Une seule classe", "Ignorer la variabilité", "Uniquement XYZ"], r: 0, explication: "Le croisement permet d'affiner la stratégie (AX : suivi rigoureux, CY : gestion simplifiée)." },
       { q: "Pour un Pareto sur plusieurs milliers de références, on utilise souvent :", options: ["Un algorithme de tri et cumul automatisé (ex. Power Query)", "Un tri manuel", "Un camembert", "Aucune solution"], r: 0, explication: "Les outils décisionnels automatisent le calcul des pourcentages cumulés sur de gros volumes." },
-      { q: "Le prompt 'Crée un workflow de prompts pour analyser les ruptures de stock d’un entrepôt' est un :", options: ["Meta-prompt de conception de chaîne", "Few-shot", "Roleplay", "Zero-shot"], r: 0, explication: "On demande une architecture de plusieurs prompts en séquence." },
-      { q: "L’algorithme de Wagner-Within résout :", options: ["Le problème de lot-sizing dynamique", "Le tracé de Pareto", "La rotation des stocks", "La prévision de vente"], r: 0, explication: "Il détermine les quantités optimales à commander sur une période finie avec demande variable." },
+      { q: "Le prompt 'Crée un workflow de prompts pour analyser les ruptures de stock d'un entrepôt' est un :", options: ["Meta-prompt de conception de chaîne", "Few-shot", "Roleplay", "Zero-shot"], r: 0, explication: "On demande une architecture de plusieurs prompts en séquence." },
+      { q: "L'algorithme de Wagner-Within résout :", options: ["Le problème de lot-sizing dynamique", "Le tracé de Pareto", "La rotation des stocks", "La prévision de vente"], r: 0, explication: "Il détermine les quantités optimales à commander sur une période finie avec demande variable." },
       { q: "Un Pareto sur des données multidimensionnelles peut être visualisé via :", options: ["Un arbre de Pareto (Pareto tree ou heatmap)", "Un simple histogramme", "Un nuage de points sans cumul", "Un tableau de chiffres"], r: 0, explication: "Des représentations avancées permettent de voir la contribution de plusieurs dimensions." },
-      { q: "Le prompt 'Utilise l’API d’un ERP pour récupérer les niveaux de stock et génère un rapport Pareto' nécessite :", options: ["Un prompt avec appel à outil (function calling)", "Un prompt classique", "Un prompt sans API", "Un prompt en chinois"], r: 0, explication: "Les modèles modernes peuvent invoquer des fonctions externes." },
+      { q: "Le prompt 'Utilise l'API d'un ERP pour récupérer les niveaux de stock et génère un rapport Pareto' nécessite :", options: ["Un prompt avec appel à outil (function calling)", "Un prompt classique", "Un prompt sans API", "Un prompt en chinois"], r: 0, explication: "Les modèles modernes peuvent invoquer des fonctions externes." },
       { q: "La méthode de prévision de la demande de Croston est adaptée pour :", options: ["Les demandes intermittentes (pièces détachées)", "Les produits à forte rotation", "Les biens de consommation courante", "Les matières premières"], r: 0, explication: "Croston traite les séries avec beaucoup de zéros." },
-      { q: "Pour un Pareto sur des données de consommation avec saisonnalité, on doit :", options: ["Désaisonnaliser avant l’analyse", "Ne pas tenir compte", "Ajouter un coefficient saisonnier après", "Ignorer la saisonnalité"], r: 0, explication: "La désaisonnalisation évite de fausser les priorités." },
+      { q: "Pour un Pareto sur des données de consommation avec saisonnalité, on doit :", options: ["Désaisonnaliser avant l'analyse", "Ne pas tenir compte", "Ajouter un coefficient saisonnier après", "Ignorer la saisonnalité"], r: 0, explication: "La désaisonnalisation évite de fausser les priorités." },
       { q: "Le prompting 'few-shot avec raisonnement explicite' consiste à :", options: ["Donner des exemples de raisonnements étape par étape", "Donner seulement les réponses", "Ne donner aucun exemple", "Donner des exemples sans raisonnement"], r: 0, explication: "On montre comment raisonner, pas seulement la réponse." },
       { q: "La méthode DRP (Distribution Requirements Planning) étend le calcul des besoins aux :", options: ["Réseaux de distribution multi-entrepôts", "Un seul entrepôt", "La production", "Les achats"], r: 0, explication: "DRP planifie les flux dans un réseau logistique." },
-      { q: "Le prompt 'Rédige un post-mortem d’une rupture majeure en utilisant la méthode des 5 pourquoi' utilise :", options: ["Roleplay + technique d’analyse", "Zero-shot", "Few-shot long", "Negative prompting"], r: 0, explication: "On assigne un rôle (rédacteur) et on spécifie une méthode." },
+      { q: "Le prompt 'Rédige un post-mortem d'une rupture majeure en utilisant la méthode des 5 pourquoi' utilise :", options: ["Roleplay + technique d'analyse", "Zero-shot", "Few-shot long", "Negative prompting"], r: 0, explication: "On assigne un rôle (rédacteur) et on spécifie une méthode." },
       { q: "Le stock de sécurité peut être dimensionné par simulation de Monte-Carlo :", options: ["Vrai, pour modéliser les incertitudes complexes", "Faux, uniquement des formules analytiques", "Rarement utile", "Trop complexe"], r: 0, explication: "La simulation permet de capturer des distributions non normales et des corrélations." },
       { q: "Dans un Pareto sur les coûts de transport, on peut identifier :", options: ["20% des trajets générant 80% des coûts", "Tous les trajets", "Le coût total", "Le nombre de camions"], r: 0, explication: "On priorise les axes à forte valeur." },
-      { q: "Le prompting 'chain-of-thought avec auto-vérification' demande à l’IA de :", options: ["Revoir sa réponse et se corriger si nécessaire", "Ne pas vérifier", "Donner une réponse brute", "Supprimer la réponse"], r: 0, explication: "L’auto-critique améliore la qualité." },
+      { q: "Le prompting 'chain-of-thought avec auto-vérification' demande à l'IA de :", options: ["Revoir sa réponse et se corriger si nécessaire", "Ne pas vérifier", "Donner une réponse brute", "Supprimer la réponse"], r: 0, explication: "L'auto-critique améliore la qualité." },
       { q: "La méthode S&OP (Sales and Operations Planning) intègre :", options: ["Stocks, ventes, production, finance", "Seulement les stocks", "Seulement les ventes", "Uniquement la finance"], r: 0, explication: "Le S&OP aligne tous les plans." },
       { q: "Pour un Pareto sur les causes de rupture avec données textuelles (commentaires), on peut :", options: ["Utiliser du NLP pour catégoriser et quantifier", "Lire manuellement chaque commentaire", "Ignorer les textes", "Trier par longueur"], r: 0, explication: "Le traitement automatique du langage extrait les thèmes récurrents." },
       { q: "Le prompt 'Traite ce fichier CSV et applique un Pareto pondéré par le coût de rupture' est un prompt de :", options: ["Data analysis avec spécification", "Conversation simple", "Roleplay", "Meta-prompt"], r: 0, explication: "On donne une tâche précise sur des données." },
       { q: "La méthode de gestion des stocks en cross-docking (transit direct) élimine :", options: ["Le stockage intermédiaire", "Le transport", "La commande", "Les fournisseurs"], r: 0, explication: "Les marchandises sont transférées directement de la réception à l'expédition." },
-      { q: "Le prompt 'Génère un plan d’action pour réduire le stock dormant basé sur un Pareto des références invendues' combine :", options: ["Analyse et recommandation", "Seulement une liste", "Un calcul", "Un dessin"], r: 0, explication: "On attend une analyse suivie de préconisations opérationnelles." },
-      { q: "Le coût total de gestion (CTG) d’un stock avec plusieurs produits interdépendants nécessite :", options: ["Une optimisation multi-produits (contrainte de capacité)", "Des modèles indépendants", "Une simple addition", "Un Pareto séparé par produit"], r: 0, explication: "Quand les produits partagent des ressources, l’optimisation est globale." }
+      { q: "Le prompt 'Génère un plan d'action pour réduire le stock dormant basé sur un Pareto des références invendues' combine :", options: ["Analyse et recommandation", "Seulement une liste", "Un calcul", "Un dessin"], r: 0, explication: "On attend une analyse suivie de préconisations opérationnelles." },
+      { q: "Le coût total de gestion (CTG) d'un stock avec plusieurs produits interdépendants nécessite :", options: ["Une optimisation multi-produits (contrainte de capacité)", "Des modèles indépendants", "Une simple addition", "Un Pareto séparé par produit"], r: 0, explication: "Quand les produits partagent des ressources, l'optimisation est globale." }
     ]
   },
   {
-    id: 'q7',
-    formationId: 'good-deal',
-    titre: 'Master Challenge Good Deal : Intégration stocks, Pareto, prompt engineering de haut niveau',
-    niveau: 'Expert N1',
-    niveauClass: 'lvl-6',
-    num: 7,
+    id: 'q7', formationId: 'good-deal', titre: 'Master Challenge Good Deal : Intégration stocks, Pareto, prompt engineering de haut niveau', niveau: 'Expert N1', niveauClass: 'lvl-6', num: 7,
     description: 'Synthèse complète : gestion des stocks avancée, Pareto décisionnel, architecture de prompts complexes, cas pratique intégré.',
     questions: [
-      { q: "Vous devez concevoir un système de réapprovisionnement pour des pièces détachées à demande sporadique. Quelle approche ?", options: ["Modèle de Croston + stock de sécurité basé sur l’intervalle moyen", "Modèle de Wilson standard", "Juste à temps", "FIFO simple"], r: 0, explication: "Croston est adapté aux demandes intermittentes, couplé à une gestion de seuil." },
+      { q: "Vous devez concevoir un système de réapprovisionnement pour des pièces détachées à demande sporadique. Quelle approche ?", options: ["Modèle de Croston + stock de sécurité basé sur l'intervalle moyen", "Modèle de Wilson standard", "Juste à temps", "FIFO simple"], r: 0, explication: "Croston est adapté aux demandes intermittentes, couplé à une gestion de seuil." },
       { q: "Pour un dashboard de pilotage de stock multicritère (valeur, délai, criticité), quel outil visuel combineriez-vous avec le Pareto ?", options: ["Heatmap + Pareto pondéré", "Camembert", "Histogramme simple", "Nuage de points"], r: 0, explication: "Une heatmap peut montrer la criticité, et un Pareto pondéré intègre plusieurs dimensions." },
-      { q: "Concevez un prompt en trois étapes pour analyser une rupture : premièrement diagnostiquer, deuxièmement prioriser par Pareto, troisièmement proposer des actions. Que contient chaque étape ?", options: ["Étape1 : collecte données ; Étape2 : calcul % cumulés ; Étape3 : recommandations spécifiques", "Une seule question", "Seulement la troisième étape", "Sans structure"], r: 0, explication: "Le chaînage structuré donne un résultat opérationnel." },
-      { q: "Dans un environnement avec des contraintes de capacité d’entreposage, comment adapter le modèle de Wilson ?", options: ["Introduire une contrainte de volume maximal et optimiser sous contrainte (Lagrangien)", "Ignorer la capacité", "Diminuer la demande", "Augmenter le prix"], r: 0, explication: "On cherche la quantité économique sous plafond d’espace." },
-      { q: "Vous avez des données de vente avec tendance et saisonnalité. Quelle méthode de prévision utiliser avant d’appliquer un Pareto ?", options: ["Lissage exponentiel de Holt-Winters", "Moyenne mobile simple", "Naïve", "Régression linéaire seule"], r: 0, explication: "Holt-Winters capture tendance et saisonnalité." },
-      { q: "Le prompt suivant : 'Décompose la gestion des stocks en sous-problèmes (prévision, approvisionnement, sécurité) et pour chacun, génère un prompt spécialisé.' est un exemple de :", options: ["Méta-prompt de conception systémique", "Few-shot", "Roleplay", "Zero-shot"], r: 0, explication: "On demande une architecture de prompts modulaires." },
-      { q: "Pour un Pareto sur la criticité des pannes, comment pondérer fréquence et coût d’arrêt ?", options: ["Calculer un score = w1 × fréquence + w2 × coût (normalisés)", "Prendre le max", "Sommer les deux", "Multiplier"], r: 0, explication: "La pondération permet de prioriser selon les objectifs." },
-      { q: "Comment évaluer la robustesse d’une politique de stock face aux incertitudes ?", options: ["Simulation Monte-Carlo sur la demande et les délais", "Regarder la moyenne", "Prendre le pire cas", "Ignorer les incertitudes"], r: 0, explication: "La simulation donne une distribution des indicateurs de performance." },
+      { q: "Concevez un prompt en trois étapes pour analyser une rupture. Que contient chaque étape ?", options: ["Étape1 : collecte données ; Étape2 : calcul % cumulés ; Étape3 : recommandations spécifiques", "Une seule question", "Seulement la troisième étape", "Sans structure"], r: 0, explication: "Le chaînage structuré donne un résultat opérationnel." },
+      { q: "Dans un environnement avec des contraintes de capacité d'entreposage, comment adapter le modèle de Wilson ?", options: ["Introduire une contrainte de volume maximal et optimiser sous contrainte (Lagrangien)", "Ignorer la capacité", "Diminuer la demande", "Augmenter le prix"], r: 0, explication: "On cherche la quantité économique sous plafond d'espace." },
+      { q: "Vous avez des données de vente avec tendance et saisonnalité. Quelle méthode de prévision utiliser avant d'appliquer un Pareto ?", options: ["Lissage exponentiel de Holt-Winters", "Moyenne mobile simple", "Naïve", "Régression linéaire seule"], r: 0, explication: "Holt-Winters capture tendance et saisonnalité." },
+      { q: "Le prompt 'Décompose la gestion des stocks en sous-problèmes et pour chacun, génère un prompt spécialisé.' est un exemple de :", options: ["Méta-prompt de conception systémique", "Few-shot", "Roleplay", "Zero-shot"], r: 0, explication: "On demande une architecture de prompts modulaires." },
+      { q: "Pour un Pareto sur la criticité des pannes, comment pondérer fréquence et coût d'arrêt ?", options: ["Calculer un score = w1 × fréquence + w2 × coût (normalisés)", "Prendre le max", "Sommer les deux", "Multiplier"], r: 0, explication: "La pondération permet de prioriser selon les objectifs." },
+      { q: "Comment évaluer la robustesse d'une politique de stock face aux incertitudes ?", options: ["Simulation Monte-Carlo sur la demande et les délais", "Regarder la moyenne", "Prendre le pire cas", "Ignorer les incertitudes"], r: 0, explication: "La simulation donne une distribution des indicateurs de performance." },
       { q: "Le prompt 'Écris une fonction Python qui lit un fichier Excel, calcule un Pareto et exporte un graphique' relève :", options: ["Prompt de génération de code avec spécifications", "Roleplay", "Few-shot", "Méta-prompt"], r: 0, explication: "On attend un code exécutable." },
-      { q: "Dans une chaîne logistique multi-échelons, le bullwhip effect (effet coup de fouet) peut être atténué en :", options: ["Partage d’information et réduction des délais", "Augmentant les stocks", "Rallongeant les délais", "Isolant les échelons"], r: 0, explication: "La transparence réduit les amplifications de variance." },
-      { q: "Concevez un assistant IA (via prompt) qui aide un gestionnaire de stock à interpréter un Pareto mensuel. Le prompt doit inclure :", options: ["Rôle (expert logistique), contexte (données en entrée), tâche (interpréter 80/20), format (bullets)", "Une seule question", "Aucune instruction", "Uniquement le rôle"], r: 0, explication: "Un prompt complet oriente l’IA vers une réponse utile." },
+      { q: "Dans une chaîne logistique multi-échelons, le bullwhip effect (effet coup de fouet) peut être atténué en :", options: ["Partage d'information et réduction des délais", "Augmentant les stocks", "Rallongeant les délais", "Isolant les échelons"], r: 0, explication: "La transparence réduit les amplifications de variance." },
+      { q: "Concevez un assistant IA qui aide un gestionnaire de stock à interpréter un Pareto mensuel. Le prompt doit inclure :", options: ["Rôle (expert logistique), contexte (données en entrée), tâche (interpréter 80/20), format (bullets)", "Une seule question", "Aucune instruction", "Uniquement le rôle"], r: 0, explication: "Un prompt complet oriente l'IA vers une réponse utile." },
       { q: "La méthode de classification FMR (Fast, Medium, Slow) est souvent combinée avec :", options: ["Pareto pour le dimensionnement des stocks", "La météo", "La couleur des produits", "Le nom des fournisseurs"], r: 0, explication: "Les articles lents nécessitent des politiques de stock différentes." },
-      { q: "Pour un projet d’amélioration, vous appliquez un Pareto sur les causes de surstock. Que faites-vous des causes représentant moins de 5% du cumul ?", options: ["On les regroupe en catégorie 'Autres' et on ne les traite pas en priorité", "On les traite en premier", "On les supprime", "On double leur poids"], r: 0, explication: "L’analyse se concentre sur la queue courte." },
-      { q: "Le prompt 'Utilise la technique du 'chain-of-thought' pour expliquer pourquoi le point de commande doit augmenter si le délai augmente' doit :", options: ["Montrer le raisonnement mathématique étape par étape", "Donner une réponse courte", "Citer une source", "Ignorer la formule"], r: 0, explication: "Chain-of-thought explicite la logique." },
+      { q: "Pour un projet d'amélioration, vous appliquez un Pareto sur les causes de surstock. Que faites-vous des causes représentant moins de 5% du cumul ?", options: ["On les regroupe en catégorie 'Autres' et on ne les traite pas en priorité", "On les traite en premier", "On les supprime", "On double leur poids"], r: 0, explication: "L'analyse se concentre sur la queue courte." },
+      { q: "Le prompt 'Utilise la technique du chain-of-thought pour expliquer pourquoi le point de commande doit augmenter si le délai augmente' doit :", options: ["Montrer le raisonnement mathématique étape par étape", "Donner une réponse courte", "Citer une source", "Ignorer la formule"], r: 0, explication: "Chain-of-thought explicite la logique." },
       { q: "Lorsque vous avez des milliers de références, comment construire un Pareto efficacement ?", options: ["Agréger les références par famille de produits", "Trier manuellement", "Prendre un échantillon", "Utiliser un outil BI avec tris et cumuls"], r: 0, explication: "Les familles réduisent la complexité et restent exploitables." },
-      { q: "Intégrez un méta-prompt qui génère un plan de réduction des coûts de stock à partir d’un fichier de données. Décrivez la structure.", options: ["1. Rôle : analyste ; 2. Données : colonnes ; 3. Tâche : calcul Pareto sur valeur + rotation ; 4. Format : tableau d’actions par classe ABC", "Une phrase", "Un seul mot", "Sans structure"], r: 0, explication: "Le méta-prompt doit être précis pour produire un plan utile." },
-      { q: "La gestion des stocks dans un contexte de forte inflation (monnaie locale dépréciée) nécessite de :", options: ["Réduire les stocks pour limiter l’exposition financière", "Augmenter les stocks massivement", "Ne pas changer", "Passer au troc"], r: 0, explication: "L’inflation érode la valeur monétaire, donc on minimise les stocks sauf spéculation." },
-      { q: "Quel prompt utiliseriez-vous pour que l’IA simule une négociation avec un fournisseur sur les délais ?", options: ["Joue le rôle d’un fournisseur délai, je suis l’acheteur. Utilise des arguments basés sur le Pareto des délais.", "Donne-moi un prix", "Ignore le délai", "Parle de météo"], r: 0, explication: "Roleplay avec contraintes issues du Pareto." },
+      { q: "Intégrez un méta-prompt qui génère un plan de réduction des coûts de stock. Décrivez la structure.", options: ["1. Rôle : analyste ; 2. Données : colonnes ; 3. Tâche : calcul Pareto + rotation ; 4. Format : tableau d'actions par classe ABC", "Une phrase", "Un seul mot", "Sans structure"], r: 0, explication: "Le méta-prompt doit être précis pour produire un plan utile." },
+      { q: "La gestion des stocks dans un contexte de forte inflation nécessite de :", options: ["Réduire les stocks pour limiter l'exposition financière", "Augmenter les stocks massivement", "Ne pas changer", "Passer au troc"], r: 0, explication: "L'inflation érode la valeur monétaire, donc on minimise les stocks sauf spéculation." },
+      { q: "Quel prompt utiliseriez-vous pour que l'IA simule une négociation avec un fournisseur sur les délais ?", options: ["Joue le rôle d'un fournisseur délai, je suis l'acheteur. Utilise des arguments basés sur le Pareto des délais.", "Donne-moi un prix", "Ignore le délai", "Parle de météo"], r: 0, explication: "Roleplay avec contraintes issues du Pareto." },
       { q: "La méthode de réapprovisionnement kanban est basée sur :", options: ["Un signal visuel (carte) déclenchant une commande", "Une quantité économique", "Une période fixe", "Un stock de sécurité"], r: 0, explication: "Kanban est un système pull simple et visuel." },
-      { q: "Pour conclure le challenge, quelle est selon vous la clé d’une gestion des stocks performante couplée au Pareto et à l’IA ?", options: ["Identifier les 20% vitaux, automatiser le suivi via des prompts bien conçus, et réviser régulièrement les seuils", "Tout automatiser sans analyse", "Suivre la majorité des références", "Ignorer les données"], r: 0, explication: "La synergie des trois piliers (Pareto pour prioriser, IA/prompts pour automatiser, révision continue) donne le meilleur résultat." }
+      { q: "Quelle est selon vous la clé d'une gestion des stocks performante couplée au Pareto et à l'IA ?", options: ["Identifier les 20% vitaux, automatiser le suivi via des prompts bien conçus, et réviser régulièrement les seuils", "Tout automatiser sans analyse", "Suivre la majorité des références", "Ignorer les données"], r: 0, explication: "La synergie des trois piliers (Pareto pour prioriser, IA/prompts pour automatiser, révision continue) donne le meilleur résultat." }
     ]
   }
 ];
-
-// Export si nécessaire (pour utilisation dans un script plus large)
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { QUIZZ_DATA };
-}
 
 const FORMES_DATA = [
   { profil: "images/image3.jpeg", nom: "Ivanna Elfried Ngeutchou", role: "Participante", initiales: "IN", formations: ["Good Deal"], attestation: false },
@@ -1308,6 +1259,7 @@ const FORMATEURS_DATA = [
   { profil: "images/13.jpeg", nom: "KWARISSA LADA Lyda", role: "Formatrice Excel", initiales: "KL", type: "Membre DATAIKOS", formations: ["Good Deal"], bio: "Polytechnicien AI & Data Science" },
   { profil: "images/image2.jpeg", nom: "MBONJO ETIA Patrick Thomas", role: "Formateur Excel", initiales: "ME", type: "Membre DATAIKOS", formations: ["Good Deal"], bio: "Polytechnicien AI & Data Science" }
 ];
+
 // ============================================================
 // APP STATE
 // ============================================================
@@ -1317,8 +1269,6 @@ let selectedAnswer = null;
 let answers = [];
 let score = 0;
 let answered = false;
-
-// Identité du participant
 let participantPrenom = '';
 let participantNom = '';
 let pendingQuizId = null;
@@ -1371,7 +1321,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ============================================================
-// TRACKING
+// ✅ TRACKING — URL CORRIGÉE : /api/track (minuscules)
 // ============================================================
 async function trackScore(quizId, quizTitre, score, total, pct) {
   try {
@@ -1381,7 +1331,8 @@ async function trackScore(quizId, quizTitre, score, total, pct) {
       quizId, quizTitre, score, total, pct,
       timestamp: new Date().toISOString()
     };
-    const res = await fetch('/API/track', {
+    // ✅ CORRECTION CRITIQUE : /api/track en minuscules (pas /API/track)
+    const res = await fetch('/api/track', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
@@ -1389,14 +1340,17 @@ async function trackScore(quizId, quizTitre, score, total, pct) {
     const data = await res.json();
     if (data.success) {
       const msg = data.tentativeNum === 1
-        ? '✓ 1ère tentative enregistrée - ' + pct + '%'
+        ? '✓ 1ère tentative enregistrée — ' + pct + '%'
         : data.tentativeNum === 2
-          ? '✓ 2ème tentative enregistrée - ' + pct + '%'
+          ? '✓ 2ème tentative enregistrée — ' + pct + '%'
           : 'Score non enregistré (2 tentatives max atteintes)';
       showToast(msg, data.tentativeNum <= 2 ? 'success' : 'info');
+    } else {
+      showToast('Erreur enregistrement : ' + (data.error || 'inconnue'), 'error');
     }
   } catch(err) {
     console.warn('Tracking indisponible:', err.message);
+    showToast('Tracking hors ligne', 'error');
   }
 }
 
@@ -1407,7 +1361,7 @@ function showPage(page) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('[data-page]').forEach(a => a.classList.remove('active'));
   document.getElementById('page-' + page).classList.add('active');
-  const link = document.querySelector(`[data-page="${page}"]`);
+  const link = document.querySelector('[data-page="' + page + '"]');
   if (link) link.classList.add('active');
   if (page === 'formation') { showFormationList(); }
   if (page === 'quizz') { renderQuizzGrid(); }
@@ -1445,15 +1399,15 @@ function showFormation(id) {
 function renderFormationQuizz() {
   const container = document.getElementById('formation-quizz-list');
   if (!container) return;
-  const html = QUIZZ_DATA.map(q => `
-    <div class="quizz-mini-card" onclick="requestIdentityThenQuiz('${q.id}')">
-      <div class="quizz-mini-left">
-        <h5>Quizz ${q.num} - ${q.titre}</h5>
-        <span>${q.questions.length} questions</span>
-      </div>
-      <span class="level-badge ${q.niveauClass}">${q.niveau}</span>
-    </div>
-  `).join('');
+  const html = QUIZZ_DATA.map(q =>
+    '<div class="quizz-mini-card" onclick="requestIdentityThenQuiz(\'' + q.id + '\')">' +
+      '<div class="quizz-mini-left">' +
+        '<h5>Quizz ' + q.num + ' - ' + q.titre + '</h5>' +
+        '<span>' + q.questions.length + ' questions</span>' +
+      '</div>' +
+      '<span class="level-badge ' + q.niveauClass + '">' + q.niveau + '</span>' +
+    '</div>'
+  ).join('');
   container.innerHTML = html;
 }
 
@@ -1463,29 +1417,25 @@ function renderFormationQuizz() {
 function renderQuizzGrid() {
   const container = document.getElementById('quizz-grid');
   if (!container) return;
-  container.innerHTML = QUIZZ_DATA.map(q => `
-    <div class="quizz-card" onclick="requestIdentityThenQuiz('${q.id}')">
-      <div class="quizz-card-header">
-        <div class="quizz-num">GOOD DEAL - Q${q.num}/7</div>
-        <span class="level-badge ${q.niveauClass}">${q.niveau}</span>
-      </div>
-      <h3>${q.titre}</h3>
-      <p>${q.description}</p>
-      <div class="quizz-card-footer">
-        <span> ${q.questions.length} questions</span>
-        <button class="start-btn">Commencer →</button>
-      </div>
-    </div>
-  `).join('');
+  container.innerHTML = QUIZZ_DATA.map(q =>
+    '<div class="quizz-card" onclick="requestIdentityThenQuiz(\'' + q.id + '\')">' +
+      '<div class="quizz-card-header">' +
+        '<div class="quizz-num">GOOD DEAL - Q' + q.num + '/7</div>' +
+        '<span class="level-badge ' + q.niveauClass + '">' + q.niveau + '</span>' +
+      '</div>' +
+      '<h3>' + q.titre + '</h3>' +
+      '<p>' + q.description + '</p>' +
+      '<div class="quizz-card-footer">' +
+        '<span>' + q.questions.length + ' questions</span>' +
+        '<button class="start-btn">Commencer →</button>' +
+      '</div>' +
+    '</div>'
+  ).join('');
 }
 
 // ============================================================
 // QUIZ ENGINE
 // ============================================================
-function openQuiz(quizId) {
-  requestIdentityThenQuiz(quizId);
-}
-
 function startQuiz(quizId) {
   currentQuiz = QUIZZ_DATA.find(q => q.id === quizId);
   currentQuestion = 0;
@@ -1514,26 +1464,25 @@ function renderQuestion() {
   selectedAnswer = null;
 
   const optLabels = ['A', 'B', 'C', 'D'];
-  const html = `
-    <div class="track-indicator"><div class="track-dot"></div>${participantPrenom} ${participantNom}</div>
-    <div class="question-num">Question ${currentQuestion + 1} sur ${total}</div>
-    <div class="question-text">${q.q}</div>
-    <div class="options-grid">
-      ${q.options.map((opt, i) => `
-        <button class="option-btn" onclick="selectAnswer(${i})" id="opt-${i}">
-          <span class="option-label">${optLabels[i]}</span>
-          ${opt}
-        </button>
-      `).join('')}
-    </div>
-    <div class="quiz-feedback" id="quizFeedback"></div>
-    <div class="quiz-nav">
-      <span style="font-size:13px;color:var(--text-faint);">Score : ${score}/${currentQuestion}</span>
-      <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" style="display:none;">
-        ${currentQuestion + 1 < total ? 'Question suivante →' : 'Voir mes résultats →'}
-      </button>
-    </div>
-  `;
+  let optionsHtml = q.options.map(function(opt, i) {
+    return '<button class="option-btn" onclick="selectAnswer(' + i + ')" id="opt-' + i + '">' +
+      '<span class="option-label">' + optLabels[i] + '</span>' + opt +
+    '</button>';
+  }).join('');
+
+  const html =
+    '<div class="track-indicator"><div class="track-dot"></div>' + participantPrenom + ' ' + participantNom + '</div>' +
+    '<div class="question-num">Question ' + (currentQuestion + 1) + ' sur ' + total + '</div>' +
+    '<div class="question-text">' + q.q + '</div>' +
+    '<div class="options-grid">' + optionsHtml + '</div>' +
+    '<div class="quiz-feedback" id="quizFeedback"></div>' +
+    '<div class="quiz-nav">' +
+      '<span style="font-size:13px;color:var(--text-faint);">Score : ' + score + '/' + currentQuestion + '</span>' +
+      '<button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" style="display:none;">' +
+        (currentQuestion + 1 < total ? 'Question suivante →' : 'Voir mes résultats →') +
+      '</button>' +
+    '</div>';
+
   document.getElementById('quizContent').innerHTML = html;
 }
 
@@ -1545,17 +1494,17 @@ function selectAnswer(idx) {
   const isCorrect = idx === q.r;
   if (isCorrect) score++;
 
-  document.querySelectorAll('.option-btn').forEach((btn, i) => {
+  document.querySelectorAll('.option-btn').forEach(function(btn, i) {
     if (i === q.r) btn.classList.add('correct');
     else if (i === idx && !isCorrect) btn.classList.add('wrong');
   });
 
   const fb = document.getElementById('quizFeedback');
   fb.className = 'quiz-feedback show ' + (isCorrect ? 'correct-fb' : 'wrong-fb');
-  fb.innerHTML = (isCorrect ? 'Correct ! ' : 'Incorrect. ') + q.explication;
+  fb.innerHTML = (isCorrect ? '✓ Correct ! ' : '✗ Incorrect. ') + q.explication;
 
   document.getElementById('nextBtn').style.display = 'inline-flex';
-  answers.push({ question: q.q, chosen: idx, correct: q.r, isCorrect, options: q.options });
+  answers.push({ question: q.q, chosen: idx, correct: q.r, isCorrect: isCorrect, options: q.options });
 }
 
 function nextQuestion() {
@@ -1572,61 +1521,56 @@ function showResults() {
   const pct = Math.round((score / total) * 100);
   document.getElementById('progressFill').style.width = '100%';
 
-  // Envoyer le score au serveur Vercel KV
+  // ✅ Envoyer le score — URL déjà corrigée dans trackScore()
   trackScore(currentQuiz.id, currentQuiz.titre, score, total, pct);
 
   let mention = '';
   if (pct >= 90) mention = 'Excellent ! Niveau validé.';
   else if (pct >= 70) mention = 'Bien joué ! Encore un effort.';
-  else if (pct >= 50) mention = 'En progrès - relisez le cours !';
+  else if (pct >= 50) mention = 'En progrès — relisez le cours !';
   else mention = 'Continuez à vous former !';
 
-  const reviewHtml = answers.map((a, i) => `
-    <div class="review-item ${a.isCorrect ? 'correct-r' : 'wrong-r'}">
-      <div class="review-q">${i + 1}. ${a.question}</div>
-      <div class="review-a">
-        ${a.isCorrect
-          ? `<span class="correct-ans"> ${a.options[a.correct]}</span>`
-          : `<span class="your">Votre réponse : ${a.options[a.chosen]}</span><br><span class="correct-ans"> Bonne réponse : ${a.options[a.correct]}</span>`
-        }
-      </div>
-    </div>
-  `).join('');
+  const reviewHtml = answers.map(function(a, i) {
+    return '<div class="review-item ' + (a.isCorrect ? 'correct-r' : 'wrong-r') + '">' +
+      '<div class="review-q">' + (i + 1) + '. ' + a.question + '</div>' +
+      '<div class="review-a">' +
+        (a.isCorrect
+          ? '<span class="correct-ans">✓ ' + a.options[a.correct] + '</span>'
+          : '<span class="your">Votre réponse : ' + a.options[a.chosen] + '</span><br><span class="correct-ans">✓ Bonne réponse : ' + a.options[a.correct] + '</span>'
+        ) +
+      '</div>' +
+    '</div>';
+  }).join('');
 
   const circumference = 2 * Math.PI * 54;
   const offset = circumference - (pct / 100) * circumference;
 
-  document.getElementById('quizContent').innerHTML = `
-    <div class="results-screen">
-      <div style="font-size:14px;color:var(--text-muted);margin-bottom:1.5rem;font-weight:600;">
-        Résultats de <span style="color:var(--accent);">${participantPrenom} ${participantNom}</span>
-      </div>
-      <div class="score-circle">
-        <svg viewBox="0 0 120 120">
-          <circle cx="60" cy="60" r="54" fill="none" stroke="var(--border)" stroke-width="8"/>
-          <circle cx="60" cy="60" r="54" fill="none" stroke="var(--accent)" stroke-width="8"
-            stroke-dasharray="${circumference}" stroke-dashoffset="${offset}"
-            stroke-linecap="round" transform="rotate(-90 60 60)"
-            style="transition:stroke-dashoffset 1s ease;"/>
-        </svg>
-        <div class="score-circle-num">${pct}%</div>
-        <div class="score-circle-label">${score}/${total}</div>
-      </div>
-      <div class="results-title">${mention}</div>
-      <div class="results-sub">Vous avez répondu correctement à ${score} question(s) sur ${total}.</div>
-      <div style="font-size:12px;color:var(--text-faint);margin-bottom:1.5rem;">
-        Score enregistré pour le suivi DATAIKOS ✓
-      </div>
-      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem;">
-        <button class="btn btn-primary" onclick="startQuiz('${currentQuiz.id}')">Recommencer →</button>
-        <button class="btn btn-outline" onclick="closeQuiz()">Fermer</button>
-      </div>
-      <div class="answers-review">
-        <h4 style="margin-bottom:1rem;font-size:1rem;font-weight:700;">Révision des réponses</h4>
-        ${reviewHtml}
-      </div>
-    </div>
-  `;
+  document.getElementById('quizContent').innerHTML =
+    '<div class="results-screen">' +
+      '<div style="font-size:14px;color:var(--text-muted);margin-bottom:1.5rem;font-weight:600;">Résultats de <span style="color:var(--accent);">' + participantPrenom + ' ' + participantNom + '</span></div>' +
+      '<div class="score-circle">' +
+        '<svg viewBox="0 0 120 120">' +
+          '<circle cx="60" cy="60" r="54" fill="none" stroke="var(--border)" stroke-width="8"/>' +
+          '<circle cx="60" cy="60" r="54" fill="none" stroke="var(--accent)" stroke-width="8"' +
+            ' stroke-dasharray="' + circumference + '" stroke-dashoffset="' + offset + '"' +
+            ' stroke-linecap="round" transform="rotate(-90 60 60)"' +
+            ' style="transition:stroke-dashoffset 1s ease;"/>' +
+        '</svg>' +
+        '<div class="score-circle-num">' + pct + '%</div>' +
+        '<div class="score-circle-label">' + score + '/' + total + '</div>' +
+      '</div>' +
+      '<div class="results-title">' + mention + '</div>' +
+      '<div class="results-sub">Vous avez répondu correctement à ' + score + ' question(s) sur ' + total + '.</div>' +
+      '<div style="font-size:12px;color:var(--text-faint);margin-bottom:1.5rem;">Score enregistré pour le suivi DATAIKOS ✓</div>' +
+      '<div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem;">' +
+        '<button class="btn btn-primary" onclick="startQuiz(\'' + currentQuiz.id + '\')">Recommencer →</button>' +
+        '<button class="btn btn-outline" onclick="closeQuiz()">Fermer</button>' +
+      '</div>' +
+      '<div class="answers-review">' +
+        '<h4 style="margin-bottom:1rem;font-size:1rem;font-weight:700;">Révision des réponses</h4>' +
+        reviewHtml +
+      '</div>' +
+    '</div>';
 }
 
 // ============================================================
@@ -1636,54 +1580,57 @@ function renderLaureats() {
   renderFormes();
   renderFormateurs();
 }
+
 function renderFormes() {
   const container = document.getElementById('formes-grid');
   if (!container) return;
-  container.innerHTML = FORMES_DATA.map(p => `
-    <div class="person-card">
-      <div class="person-avatar">
-        <img src="${p.profil}" alt="${p.nom}" onerror="this.style.display='none';">
-        <div class="person-initials">${p.initiales}</div>
-      </div>
-      <div class="person-body">
-        <div class="person-name">${p.nom}</div>
-        <div class="person-role">${p.role}</div>
-        ${p.attestation ? '<div style="font-size:11px;color:var(--accent);font-weight:600;margin-bottom:8px;">Attestation obtenue</div>' : '<div style="font-size:11px;color:var(--text-faint);margin-bottom:8px;">En cours…</div>'}
-        <div class="person-formations">
-          <div style="font-size:11px;color:var(--text-faint);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.06em;">Formations</div>
-          ${p.formations.map(f => `<span class="f-tag">${f}</span>`).join('')}
-        </div>
-      </div>
-    </div>
-  `).join('');
+  container.innerHTML = FORMES_DATA.map(function(p) {
+    return '<div class="person-card">' +
+      '<div class="person-avatar">' +
+        '<img src="' + p.profil + '" alt="' + p.nom + '" onerror="this.style.display=\'none\';">' +
+        '<div class="person-initials">' + p.initiales + '</div>' +
+      '</div>' +
+      '<div class="person-body">' +
+        '<div class="person-name">' + p.nom + '</div>' +
+        '<div class="person-role">' + p.role + '</div>' +
+        (p.attestation
+          ? '<div style="font-size:11px;color:var(--accent);font-weight:600;margin-bottom:8px;">Attestation obtenue</div>'
+          : '<div style="font-size:11px;color:var(--text-faint);margin-bottom:8px;">En cours…</div>') +
+        '<div class="person-formations">' +
+          '<div style="font-size:11px;color:var(--text-faint);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.06em;">Formations</div>' +
+          p.formations.map(function(f) { return '<span class="f-tag">' + f + '</span>'; }).join('') +
+        '</div>' +
+      '</div>' +
+    '</div>';
+  }).join('');
 }
 
 function renderFormateurs() {
   const container = document.getElementById('formateurs-grid');
   if (!container) return;
-  container.innerHTML = FORMATEURS_DATA.map(p => `
-    <div class="person-card">
-      <div class="person-avatar">
-        <img src="${p.profil || ''}" alt="${p.nom}" onerror="this.style.display='none';">
-        <div class="person-initials">${p.initiales}</div>
-      </div>
-      <div class="person-body">
-        <div class="person-name">${p.nom}</div>
-        <div class="person-role">${p.role}</div>
-        <div class="person-badge ${p.type.includes('Membre') ? 'badge-member' : 'badge-partner'}">${p.type}</div>
-        <div style="font-size:12px;color:var(--text-muted);margin-bottom:8px;">${p.bio}</div>
-        <div class="person-formations">
-          <div style="font-size:11px;color:var(--text-faint);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.06em;">Formations animées</div>
-          ${p.formations.map(f => `<span class="f-tag">${f}</span>`).join('')}
-        </div>
-      </div>
-    </div>
-  `).join('');
+  container.innerHTML = FORMATEURS_DATA.map(function(p) {
+    return '<div class="person-card">' +
+      '<div class="person-avatar">' +
+        '<img src="' + (p.profil || '') + '" alt="' + p.nom + '" onerror="this.style.display=\'none\';">' +
+        '<div class="person-initials">' + p.initiales + '</div>' +
+      '</div>' +
+      '<div class="person-body">' +
+        '<div class="person-name">' + p.nom + '</div>' +
+        '<div class="person-role">' + p.role + '</div>' +
+        '<div class="person-badge ' + (p.type.includes('Membre') ? 'badge-member' : 'badge-partner') + '">' + p.type + '</div>' +
+        '<div style="font-size:12px;color:var(--text-muted);margin-bottom:8px;">' + p.bio + '</div>' +
+        '<div class="person-formations">' +
+          '<div style="font-size:11px;color:var(--text-faint);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.06em;">Formations animées</div>' +
+          p.formations.map(function(f) { return '<span class="f-tag">' + f + '</span>'; }).join('') +
+        '</div>' +
+      '</div>' +
+    '</div>';
+  }).join('');
 }
 
 function switchLaureatTab(tab) {
-  document.querySelectorAll('.laureat-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.laureat-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.laureat-tab').forEach(function(t) { t.classList.remove('active'); });
+  document.querySelectorAll('.laureat-section').forEach(function(s) { s.classList.remove('active'); });
   event.target.classList.add('active');
   document.getElementById('tab-' + tab).classList.add('active');
 }
@@ -1694,7 +1641,6 @@ function switchLaureatTab(tab) {
 renderQuizzGrid();
 renderFormationQuizz();
 renderLaureats();
-
 </script>
 </body>
 </html>
